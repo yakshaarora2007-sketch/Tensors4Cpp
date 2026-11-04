@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"E:/New folder/build-openmp/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

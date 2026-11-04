@@ -1,0 +1,19 @@
+Start testing: Nov 05 00:49 India Standard Time
+----------------------------------------------------------
+1/1 Testing: minitensor_tests
+1/1 Test: minitensor_tests
+Command: "E:/New folder/build/Release/test_tensor.exe"
+Directory: E:/New folder/build
+"minitensor_tests" start time: Nov 05 00:49 India Standard Time
+Output:
+----------------------------------------------------------
+All MiniTensor tests passed.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"minitensor_tests" end time: Nov 05 00:49 India Standard Time
+"minitensor_tests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Nov 05 00:49 India Standard Time

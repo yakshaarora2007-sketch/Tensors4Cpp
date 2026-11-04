@@ -1,0 +1,2395 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeDetermineSystem.cmake:218 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The system is: Windows - 10.0.26200 - AMD64
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeDetermineCompilerId.cmake:501 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeDetermineCompilerId.cmake:538 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCXXCompilerId.cpp.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeCXXCompilerId.cpp.in"
+    search_context:
+      CMAKE_PREFIX_PATH:
+        - "build/install"
+      ENV{PATH}:
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\NvDLISR"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files\\MATLAB\\R2026a\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\GitHub CLI\\"
+        - "C:\\Program Files\\Cloudflare\\Cloudflare WARP\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Python\\Python310\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\GitHubDesktop\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Python\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\PowerToys\\DSCModules\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Antigravity IDE\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\Downloads\\flutter\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Users\\Yaksha's Laptop\\.dotnet\\tools"
+        - "C:\\ninja"
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Roaming\\npm"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Kiro-Cli\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\copilot-shim"
+        - "C:\\Program Files\\Android\\Android Studio\\jbr\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Android\\Sdk\\platform-tools"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Android\\Sdk\\build-tools\\37.0.0"
+        - "C:\\Users\\Yaksha's Laptop\\tools\\jadx\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\tools\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\tools\\7zip"
+        - "c:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Microsoft VS Code\\2c33b50b16\\resources\\app\\node_modules.asar.unpacked\\@vscode\\ripgrep-universal\\bin\\win32-x64"
+        - "c:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Microsoft VS Code\\2c33b50b16\\resources\\app\\node_modules.asar.unpacked\\@github\\copilot-sdk-win32-x64\\ripgrep\\bin\\win32-x64"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler:  
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      MSBuild version 18.7.8+1ac568fee for .NET Framework
+      Build started 05-11-2026 00:26:10.
+      
+      Project "E:\\New folder\\build\\package_consumer\\CMakeFiles\\4.4.0-rc2\\CompilerIdCXX\\CompilerIdCXX.vcxproj" on node 1 (default targets).
+      PrepareForBuild:
+        Creating directory "Debug\\".
+        Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+        Creating directory "Debug\\CompilerIdCXX.tlog\\".
+      InitializeBuildStatus:
+        Creating "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+        Touching "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild".
+      ClCompile:
+        C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.51.36231\\bin\\HostX64\\x64\\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc145.pdb" /external:W0 /Gd /TP /FC /errorReport:queue CMakeCXXCompilerId.cpp
+        CMakeCXXCompilerId.cpp
+      Link:
+        C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.51.36231\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdCXX.lib" /MACHINE:X64 Debug\\CMakeCXXCompilerId.obj
+        CompilerIdCXX.vcxproj -> E:\\New folder\\build\\package_consumer\\CMakeFiles\\4.4.0-rc2\\CompilerIdCXX\\CompilerIdCXX.exe
+      PostBuildEvent:
+        for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
+        :VCEnd
+        CMAKE_CXX_COMPILER=C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx64\\x64\\cl.exe
+      FinalizeBuildStatus:
+        Deleting file "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild".
+        Touching "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.lastbuildstate".
+      Done Building Project "E:\\New folder\\build\\package_consumer\\CMakeFiles\\4.4.0-rc2\\CompilerIdCXX\\CompilerIdCXX.vcxproj" (default targets).
+      
+      Build succeeded.
+          0 Warning(s)
+          0 Error(s)
+      
+      Time Elapsed 00:00:00.52
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
+      
+      The CXX compiler identification is MSVC, found in:
+        E:/New folder/build/package_consumer/CMakeFiles/4.4.0-rc2/CompilerIdCXX/CompilerIdCXX.exe
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeFindBinUtils.cmake:37 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeFindBinUtils.cmake:64 (__resolve_tool_path)"
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeFindBinUtils.cmake:102 (__resolve_linker_path)"
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "_CMAKE_TOOL_WITH_PATH"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "link"
+    candidate_directories:
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/dotnet/"
+      - "C:/Program Files/MATLAB/R2026a/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Program Files/GitHub CLI/"
+      - "C:/Program Files/Cloudflare/Cloudflare WARP/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/Scripts/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/GitHubDesktop/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Ollama/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Python/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/PowerToys/DSCModules/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Antigravity IDE/bin/"
+      - "C:/Users/Yaksha's Laptop/Downloads/flutter/bin/"
+      - "C:/Users/Yaksha's Laptop/.dotnet/tools/"
+      - "C:/ninja/"
+      - "C:/msys64/ucrt64/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Roaming/npm/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/cursor/resources/app/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Kiro-Cli/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/copilot-shim/"
+      - "C:/Program Files/Android/Android Studio/jbr/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/platform-tools/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/build-tools/37.0.0/"
+      - "C:/Users/Yaksha's Laptop/tools/jadx/bin/"
+      - "C:/Users/Yaksha's Laptop/tools/bin/"
+      - "C:/Users/Yaksha's Laptop/tools/7zip/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@vscode/ripgrep-universal/bin/win32-x64/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@github/copilot-sdk-win32-x64/ripgrep/bin/win32-x64/"
+    searched_directories:
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/link.com"
+    found: "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/link.exe"
+    search_context:
+      CMAKE_PREFIX_PATH:
+        - "build/install"
+      ENV{PATH}:
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\NvDLISR"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files\\MATLAB\\R2026a\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\GitHub CLI\\"
+        - "C:\\Program Files\\Cloudflare\\Cloudflare WARP\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Python\\Python310\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\GitHubDesktop\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Python\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\PowerToys\\DSCModules\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Antigravity IDE\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\Downloads\\flutter\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Users\\Yaksha's Laptop\\.dotnet\\tools"
+        - "C:\\ninja"
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Roaming\\npm"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Kiro-Cli\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\copilot-shim"
+        - "C:\\Program Files\\Android\\Android Studio\\jbr\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Android\\Sdk\\platform-tools"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Android\\Sdk\\build-tools\\37.0.0"
+        - "C:\\Users\\Yaksha's Laptop\\tools\\jadx\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\tools\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\tools\\7zip"
+        - "c:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Microsoft VS Code\\2c33b50b16\\resources\\app\\node_modules.asar.unpacked\\@vscode\\ripgrep-universal\\bin\\win32-x64"
+        - "c:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Microsoft VS Code\\2c33b50b16\\resources\\app\\node_modules.asar.unpacked\\@github\\copilot-sdk-win32-x64\\ripgrep\\bin\\win32-x64"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeFindBinUtils.cmake:37 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeFindBinUtils.cmake:64 (__resolve_tool_path)"
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeFindBinUtils.cmake:103 (__resolve_linker_path)"
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "_CMAKE_TOOL_WITH_PATH"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "lld-link"
+    candidate_directories:
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/dotnet/"
+      - "C:/Program Files/MATLAB/R2026a/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Program Files/GitHub CLI/"
+      - "C:/Program Files/Cloudflare/Cloudflare WARP/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/Scripts/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/GitHubDesktop/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Ollama/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Python/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/PowerToys/DSCModules/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Antigravity IDE/bin/"
+      - "C:/Users/Yaksha's Laptop/Downloads/flutter/bin/"
+      - "C:/Users/Yaksha's Laptop/.dotnet/tools/"
+      - "C:/ninja/"
+      - "C:/msys64/ucrt64/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Roaming/npm/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/cursor/resources/app/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Kiro-Cli/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/copilot-shim/"
+      - "C:/Program Files/Android/Android Studio/jbr/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/platform-tools/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/build-tools/37.0.0/"
+      - "C:/Users/Yaksha's Laptop/tools/jadx/bin/"
+      - "C:/Users/Yaksha's Laptop/tools/bin/"
+      - "C:/Users/Yaksha's Laptop/tools/7zip/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@vscode/ripgrep-universal/bin/win32-x64/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@github/copilot-sdk-win32-x64/ripgrep/bin/win32-x64/"
+    searched_directories:
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/lld-link.com"
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/lld-link.exe"
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/lld-link"
+      - "C:/Windows/System32/lld-link.com"
+      - "C:/Windows/System32/lld-link.exe"
+      - "C:/Windows/System32/lld-link"
+      - "C:/Windows/lld-link.com"
+      - "C:/Windows/lld-link.exe"
+      - "C:/Windows/lld-link"
+      - "C:/Windows/System32/wbem/lld-link.com"
+      - "C:/Windows/System32/wbem/lld-link.exe"
+      - "C:/Windows/System32/wbem/lld-link"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link"
+      - "C:/Windows/System32/OpenSSH/lld-link.com"
+      - "C:/Windows/System32/OpenSSH/lld-link.exe"
+      - "C:/Windows/System32/OpenSSH/lld-link"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/lld-link.com"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/lld-link.exe"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/lld-link"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/lld-link.com"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/lld-link.exe"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/lld-link"
+      - "C:/Program Files/Git/cmd/lld-link.com"
+      - "C:/Program Files/Git/cmd/lld-link.exe"
+      - "C:/Program Files/Git/cmd/lld-link"
+      - "C:/Program Files/CMake/bin/lld-link.com"
+      - "C:/Program Files/CMake/bin/lld-link.exe"
+      - "C:/Program Files/CMake/bin/lld-link"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/lld-link.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/lld-link.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/lld-link"
+      - "C:/Program Files/dotnet/lld-link.com"
+      - "C:/Program Files/dotnet/lld-link.exe"
+      - "C:/Program Files/dotnet/lld-link"
+      - "C:/Program Files/MATLAB/R2026a/bin/lld-link.com"
+      - "C:/Program Files/MATLAB/R2026a/bin/lld-link.exe"
+      - "C:/Program Files/MATLAB/R2026a/bin/lld-link"
+      - "C:/Program Files/nodejs/lld-link.com"
+      - "C:/Program Files/nodejs/lld-link.exe"
+      - "C:/Program Files/nodejs/lld-link"
+      - "C:/Program Files/GitHub CLI/lld-link.com"
+      - "C:/Program Files/GitHub CLI/lld-link.exe"
+      - "C:/Program Files/GitHub CLI/lld-link"
+      - "C:/Program Files/Cloudflare/Cloudflare WARP/lld-link.com"
+      - "C:/Program Files/Cloudflare/Cloudflare WARP/lld-link.exe"
+      - "C:/Program Files/Cloudflare/Cloudflare WARP/lld-link"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/Scripts/lld-link.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/Scripts/lld-link.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/Scripts/lld-link"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/lld-link.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/lld-link.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/lld-link"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Microsoft/WindowsApps/lld-link.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Microsoft/WindowsApps/lld-link.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Microsoft/WindowsApps/lld-link"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/GitHubDesktop/bin/lld-link.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/GitHubDesktop/bin/lld-link.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/GitHubDesktop/bin/lld-link"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/lld-link.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/lld-link.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/lld-link"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Ollama/lld-link.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Ollama/lld-link.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Ollama/lld-link"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Python/bin/lld-link.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Python/bin/lld-link.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Python/bin/lld-link"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/PowerToys/DSCModules/lld-link.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/PowerToys/DSCModules/lld-link.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/PowerToys/DSCModules/lld-link"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Antigravity IDE/bin/lld-link.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Antigravity IDE/bin/lld-link.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Antigravity IDE/bin/lld-link"
+      - "C:/Users/Yaksha's Laptop/Downloads/flutter/bin/lld-link.com"
+      - "C:/Users/Yaksha's Laptop/Downloads/flutter/bin/lld-link.exe"
+      - "C:/Users/Yaksha's Laptop/Downloads/flutter/bin/lld-link"
+      - "C:/Users/Yaksha's Laptop/.dotnet/tools/lld-link.com"
+      - "C:/Users/Yaksha's Laptop/.dotnet/tools/lld-link.exe"
+      - "C:/Users/Yaksha's Laptop/.dotnet/tools/lld-link"
+      - "C:/ninja/lld-link.com"
+      - "C:/ninja/lld-link.exe"
+      - "C:/ninja/lld-link"
+      - "C:/msys64/ucrt64/bin/lld-link.com"
+      - "C:/msys64/ucrt64/bin/lld-link.exe"
+      - "C:/msys64/ucrt64/bin/lld-link"
+      - "C:/Users/Yaksha's Laptop/AppData/Roaming/npm/lld-link.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Roaming/npm/lld-link.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Roaming/npm/lld-link"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/cursor/resources/app/bin/lld-link.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/cursor/resources/app/bin/lld-link.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/cursor/resources/app/bin/lld-link"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Kiro-Cli/lld-link.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Kiro-Cli/lld-link.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Kiro-Cli/lld-link"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/copilot-shim/lld-link.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/copilot-shim/lld-link.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/copilot-shim/lld-link"
+      - "C:/Program Files/Android/Android Studio/jbr/bin/lld-link.com"
+      - "C:/Program Files/Android/Android Studio/jbr/bin/lld-link.exe"
+      - "C:/Program Files/Android/Android Studio/jbr/bin/lld-link"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/platform-tools/lld-link.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/platform-tools/lld-link.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/platform-tools/lld-link"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/build-tools/37.0.0/lld-link.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/build-tools/37.0.0/lld-link.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/build-tools/37.0.0/lld-link"
+      - "C:/Users/Yaksha's Laptop/tools/jadx/bin/lld-link.com"
+      - "C:/Users/Yaksha's Laptop/tools/jadx/bin/lld-link.exe"
+      - "C:/Users/Yaksha's Laptop/tools/jadx/bin/lld-link"
+      - "C:/Users/Yaksha's Laptop/tools/bin/lld-link.com"
+      - "C:/Users/Yaksha's Laptop/tools/bin/lld-link.exe"
+      - "C:/Users/Yaksha's Laptop/tools/bin/lld-link"
+      - "C:/Users/Yaksha's Laptop/tools/7zip/lld-link.com"
+      - "C:/Users/Yaksha's Laptop/tools/7zip/lld-link.exe"
+      - "C:/Users/Yaksha's Laptop/tools/7zip/lld-link"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@vscode/ripgrep-universal/bin/win32-x64/lld-link.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@vscode/ripgrep-universal/bin/win32-x64/lld-link.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@vscode/ripgrep-universal/bin/win32-x64/lld-link"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@github/copilot-sdk-win32-x64/ripgrep/bin/win32-x64/lld-link.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@github/copilot-sdk-win32-x64/ripgrep/bin/win32-x64/lld-link.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@github/copilot-sdk-win32-x64/ripgrep/bin/win32-x64/lld-link"
+    found: false
+    search_context:
+      CMAKE_PREFIX_PATH:
+        - "build/install"
+      ENV{PATH}:
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\NvDLISR"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files\\MATLAB\\R2026a\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\GitHub CLI\\"
+        - "C:\\Program Files\\Cloudflare\\Cloudflare WARP\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Python\\Python310\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\GitHubDesktop\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Python\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\PowerToys\\DSCModules\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Antigravity IDE\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\Downloads\\flutter\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Users\\Yaksha's Laptop\\.dotnet\\tools"
+        - "C:\\ninja"
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Roaming\\npm"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Kiro-Cli\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\copilot-shim"
+        - "C:\\Program Files\\Android\\Android Studio\\jbr\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Android\\Sdk\\platform-tools"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Android\\Sdk\\build-tools\\37.0.0"
+        - "C:\\Users\\Yaksha's Laptop\\tools\\jadx\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\tools\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\tools\\7zip"
+        - "c:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Microsoft VS Code\\2c33b50b16\\resources\\app\\node_modules.asar.unpacked\\@vscode\\ripgrep-universal\\bin\\win32-x64"
+        - "c:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Microsoft VS Code\\2c33b50b16\\resources\\app\\node_modules.asar.unpacked\\@github\\copilot-sdk-win32-x64\\ripgrep\\bin\\win32-x64"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeFindBinUtils.cmake:247 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_LINKER"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "link"
+    candidate_directories:
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/dotnet/"
+      - "C:/Program Files/MATLAB/R2026a/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Program Files/GitHub CLI/"
+      - "C:/Program Files/Cloudflare/Cloudflare WARP/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/Scripts/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/GitHubDesktop/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Ollama/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Python/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/PowerToys/DSCModules/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Antigravity IDE/bin/"
+      - "C:/Users/Yaksha's Laptop/Downloads/flutter/bin/"
+      - "C:/Users/Yaksha's Laptop/.dotnet/tools/"
+      - "C:/ninja/"
+      - "C:/msys64/ucrt64/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Roaming/npm/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/cursor/resources/app/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Kiro-Cli/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/copilot-shim/"
+      - "C:/Program Files/Android/Android Studio/jbr/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/platform-tools/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/build-tools/37.0.0/"
+      - "C:/Users/Yaksha's Laptop/tools/jadx/bin/"
+      - "C:/Users/Yaksha's Laptop/tools/bin/"
+      - "C:/Users/Yaksha's Laptop/tools/7zip/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@vscode/ripgrep-universal/bin/win32-x64/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@github/copilot-sdk-win32-x64/ripgrep/bin/win32-x64/"
+    searched_directories:
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/link.com"
+    found: "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/link.exe"
+    search_context:
+      CMAKE_PREFIX_PATH:
+        - "build/install"
+      ENV{PATH}:
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\NvDLISR"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files\\MATLAB\\R2026a\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\GitHub CLI\\"
+        - "C:\\Program Files\\Cloudflare\\Cloudflare WARP\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Python\\Python310\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\GitHubDesktop\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Python\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\PowerToys\\DSCModules\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Antigravity IDE\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\Downloads\\flutter\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Users\\Yaksha's Laptop\\.dotnet\\tools"
+        - "C:\\ninja"
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Roaming\\npm"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Kiro-Cli\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\copilot-shim"
+        - "C:\\Program Files\\Android\\Android Studio\\jbr\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Android\\Sdk\\platform-tools"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Android\\Sdk\\build-tools\\37.0.0"
+        - "C:\\Users\\Yaksha's Laptop\\tools\\jadx\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\tools\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\tools\\7zip"
+        - "c:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Microsoft VS Code\\2c33b50b16\\resources\\app\\node_modules.asar.unpacked\\@vscode\\ripgrep-universal\\bin\\win32-x64"
+        - "c:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Microsoft VS Code\\2c33b50b16\\resources\\app\\node_modules.asar.unpacked\\@github\\copilot-sdk-win32-x64\\ripgrep\\bin\\win32-x64"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeFindBinUtils.cmake:247 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_MT"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "mt"
+    candidate_directories:
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/dotnet/"
+      - "C:/Program Files/MATLAB/R2026a/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Program Files/GitHub CLI/"
+      - "C:/Program Files/Cloudflare/Cloudflare WARP/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/Scripts/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/GitHubDesktop/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Ollama/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Python/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/PowerToys/DSCModules/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Antigravity IDE/bin/"
+      - "C:/Users/Yaksha's Laptop/Downloads/flutter/bin/"
+      - "C:/Users/Yaksha's Laptop/.dotnet/tools/"
+      - "C:/ninja/"
+      - "C:/msys64/ucrt64/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Roaming/npm/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/cursor/resources/app/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Kiro-Cli/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/copilot-shim/"
+      - "C:/Program Files/Android/Android Studio/jbr/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/platform-tools/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/build-tools/37.0.0/"
+      - "C:/Users/Yaksha's Laptop/tools/jadx/bin/"
+      - "C:/Users/Yaksha's Laptop/tools/bin/"
+      - "C:/Users/Yaksha's Laptop/tools/7zip/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@vscode/ripgrep-universal/bin/win32-x64/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@github/copilot-sdk-win32-x64/ripgrep/bin/win32-x64/"
+    searched_directories:
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/mt.com"
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/mt.exe"
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/mt"
+      - "C:/Windows/System32/mt.com"
+      - "C:/Windows/System32/mt.exe"
+      - "C:/Windows/System32/mt"
+      - "C:/Windows/mt.com"
+      - "C:/Windows/mt.exe"
+      - "C:/Windows/mt"
+      - "C:/Windows/System32/wbem/mt.com"
+      - "C:/Windows/System32/wbem/mt.exe"
+      - "C:/Windows/System32/wbem/mt"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/mt.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/mt.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/mt"
+      - "C:/Windows/System32/OpenSSH/mt.com"
+      - "C:/Windows/System32/OpenSSH/mt.exe"
+      - "C:/Windows/System32/OpenSSH/mt"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/mt.com"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/mt.exe"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/mt"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/mt.com"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/mt.exe"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/mt"
+      - "C:/Program Files/Git/cmd/mt.com"
+      - "C:/Program Files/Git/cmd/mt.exe"
+      - "C:/Program Files/Git/cmd/mt"
+      - "C:/Program Files/CMake/bin/mt.com"
+      - "C:/Program Files/CMake/bin/mt.exe"
+      - "C:/Program Files/CMake/bin/mt"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/mt.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/mt.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/mt"
+      - "C:/Program Files/dotnet/mt.com"
+      - "C:/Program Files/dotnet/mt.exe"
+      - "C:/Program Files/dotnet/mt"
+      - "C:/Program Files/MATLAB/R2026a/bin/mt.com"
+      - "C:/Program Files/MATLAB/R2026a/bin/mt.exe"
+      - "C:/Program Files/MATLAB/R2026a/bin/mt"
+      - "C:/Program Files/nodejs/mt.com"
+      - "C:/Program Files/nodejs/mt.exe"
+      - "C:/Program Files/nodejs/mt"
+      - "C:/Program Files/GitHub CLI/mt.com"
+      - "C:/Program Files/GitHub CLI/mt.exe"
+      - "C:/Program Files/GitHub CLI/mt"
+      - "C:/Program Files/Cloudflare/Cloudflare WARP/mt.com"
+      - "C:/Program Files/Cloudflare/Cloudflare WARP/mt.exe"
+      - "C:/Program Files/Cloudflare/Cloudflare WARP/mt"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/Scripts/mt.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/Scripts/mt.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/Scripts/mt"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/mt.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/mt.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/mt"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Microsoft/WindowsApps/mt.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Microsoft/WindowsApps/mt.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Microsoft/WindowsApps/mt"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/GitHubDesktop/bin/mt.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/GitHubDesktop/bin/mt.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/GitHubDesktop/bin/mt"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/mt.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/mt.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/mt"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Ollama/mt.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Ollama/mt.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Ollama/mt"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Python/bin/mt.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Python/bin/mt.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Python/bin/mt"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/PowerToys/DSCModules/mt.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/PowerToys/DSCModules/mt.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/PowerToys/DSCModules/mt"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Antigravity IDE/bin/mt.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Antigravity IDE/bin/mt.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Antigravity IDE/bin/mt"
+      - "C:/Users/Yaksha's Laptop/Downloads/flutter/bin/mt.com"
+      - "C:/Users/Yaksha's Laptop/Downloads/flutter/bin/mt.exe"
+      - "C:/Users/Yaksha's Laptop/Downloads/flutter/bin/mt"
+      - "C:/Users/Yaksha's Laptop/.dotnet/tools/mt.com"
+      - "C:/Users/Yaksha's Laptop/.dotnet/tools/mt.exe"
+      - "C:/Users/Yaksha's Laptop/.dotnet/tools/mt"
+      - "C:/ninja/mt.com"
+      - "C:/ninja/mt.exe"
+      - "C:/ninja/mt"
+      - "C:/msys64/ucrt64/bin/mt.com"
+      - "C:/msys64/ucrt64/bin/mt.exe"
+      - "C:/msys64/ucrt64/bin/mt"
+      - "C:/Users/Yaksha's Laptop/AppData/Roaming/npm/mt.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Roaming/npm/mt.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Roaming/npm/mt"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/cursor/resources/app/bin/mt.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/cursor/resources/app/bin/mt.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/cursor/resources/app/bin/mt"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Kiro-Cli/mt.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Kiro-Cli/mt.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Kiro-Cli/mt"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/copilot-shim/mt.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/copilot-shim/mt.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/copilot-shim/mt"
+      - "C:/Program Files/Android/Android Studio/jbr/bin/mt.com"
+      - "C:/Program Files/Android/Android Studio/jbr/bin/mt.exe"
+      - "C:/Program Files/Android/Android Studio/jbr/bin/mt"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/platform-tools/mt.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/platform-tools/mt.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/platform-tools/mt"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/build-tools/37.0.0/mt.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/build-tools/37.0.0/mt.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/build-tools/37.0.0/mt"
+      - "C:/Users/Yaksha's Laptop/tools/jadx/bin/mt.com"
+      - "C:/Users/Yaksha's Laptop/tools/jadx/bin/mt.exe"
+      - "C:/Users/Yaksha's Laptop/tools/jadx/bin/mt"
+      - "C:/Users/Yaksha's Laptop/tools/bin/mt.com"
+      - "C:/Users/Yaksha's Laptop/tools/bin/mt.exe"
+      - "C:/Users/Yaksha's Laptop/tools/bin/mt"
+      - "C:/Users/Yaksha's Laptop/tools/7zip/mt.com"
+      - "C:/Users/Yaksha's Laptop/tools/7zip/mt.exe"
+      - "C:/Users/Yaksha's Laptop/tools/7zip/mt"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@vscode/ripgrep-universal/bin/win32-x64/mt.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@vscode/ripgrep-universal/bin/win32-x64/mt.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@vscode/ripgrep-universal/bin/win32-x64/mt"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@github/copilot-sdk-win32-x64/ripgrep/bin/win32-x64/mt.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@github/copilot-sdk-win32-x64/ripgrep/bin/win32-x64/mt.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@github/copilot-sdk-win32-x64/ripgrep/bin/win32-x64/mt"
+    found: false
+    search_context:
+      CMAKE_PREFIX_PATH:
+        - "build/install"
+      ENV{PATH}:
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\NvDLISR"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files\\MATLAB\\R2026a\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\GitHub CLI\\"
+        - "C:\\Program Files\\Cloudflare\\Cloudflare WARP\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Python\\Python310\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\GitHubDesktop\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Python\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\PowerToys\\DSCModules\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Antigravity IDE\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\Downloads\\flutter\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Users\\Yaksha's Laptop\\.dotnet\\tools"
+        - "C:\\ninja"
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Roaming\\npm"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Kiro-Cli\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\copilot-shim"
+        - "C:\\Program Files\\Android\\Android Studio\\jbr\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Android\\Sdk\\platform-tools"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Android\\Sdk\\build-tools\\37.0.0"
+        - "C:\\Users\\Yaksha's Laptop\\tools\\jadx\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\tools\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\tools\\7zip"
+        - "c:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Microsoft VS Code\\2c33b50b16\\resources\\app\\node_modules.asar.unpacked\\@vscode\\ripgrep-universal\\bin\\win32-x64"
+        - "c:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Microsoft VS Code\\2c33b50b16\\resources\\app\\node_modules.asar.unpacked\\@github\\copilot-sdk-win32-x64\\ripgrep\\bin\\win32-x64"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeFindBinUtils.cmake:247 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_AR"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "lib"
+    candidate_directories:
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/dotnet/"
+      - "C:/Program Files/MATLAB/R2026a/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Program Files/GitHub CLI/"
+      - "C:/Program Files/Cloudflare/Cloudflare WARP/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/Scripts/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/GitHubDesktop/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Ollama/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Python/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/PowerToys/DSCModules/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Antigravity IDE/bin/"
+      - "C:/Users/Yaksha's Laptop/Downloads/flutter/bin/"
+      - "C:/Users/Yaksha's Laptop/.dotnet/tools/"
+      - "C:/ninja/"
+      - "C:/msys64/ucrt64/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Roaming/npm/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/cursor/resources/app/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Kiro-Cli/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/copilot-shim/"
+      - "C:/Program Files/Android/Android Studio/jbr/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/platform-tools/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/build-tools/37.0.0/"
+      - "C:/Users/Yaksha's Laptop/tools/jadx/bin/"
+      - "C:/Users/Yaksha's Laptop/tools/bin/"
+      - "C:/Users/Yaksha's Laptop/tools/7zip/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@vscode/ripgrep-universal/bin/win32-x64/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@github/copilot-sdk-win32-x64/ripgrep/bin/win32-x64/"
+    searched_directories:
+      - "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/lib.com"
+    found: "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/lib.exe"
+    search_context:
+      CMAKE_PREFIX_PATH:
+        - "build/install"
+      ENV{PATH}:
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\NvDLISR"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files\\MATLAB\\R2026a\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\GitHub CLI\\"
+        - "C:\\Program Files\\Cloudflare\\Cloudflare WARP\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Python\\Python310\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\GitHubDesktop\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Python\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\PowerToys\\DSCModules\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Antigravity IDE\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\Downloads\\flutter\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Users\\Yaksha's Laptop\\.dotnet\\tools"
+        - "C:\\ninja"
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Roaming\\npm"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Kiro-Cli\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\copilot-shim"
+        - "C:\\Program Files\\Android\\Android Studio\\jbr\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Android\\Sdk\\platform-tools"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Android\\Sdk\\build-tools\\37.0.0"
+        - "C:\\Users\\Yaksha's Laptop\\tools\\jadx\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\tools\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\tools\\7zip"
+        - "c:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Microsoft VS Code\\2c33b50b16\\resources\\app\\node_modules.asar.unpacked\\@vscode\\ripgrep-universal\\bin\\win32-x64"
+        - "c:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Microsoft VS Code\\2c33b50b16\\resources\\app\\node_modules.asar.unpacked\\@github\\copilot-sdk-win32-x64\\ripgrep\\bin\\win32-x64"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeDetermineRCCompiler.cmake:40 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/Platform/Windows-MSVC.cmake:592 (enable_language)"
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/Platform/Windows-MSVC.cmake:565 (__windows_compiler_msvc_enable_rc)"
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/Platform/Windows-MSVC-CXX.cmake:6 (__windows_compiler_msvc)"
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeCXXInformation.cmake:48 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_RC_COMPILER"
+    description: "RC compiler"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rc"
+    candidate_directories:
+      - "E:/New folder/tests/package_consumer/build/install/bin/"
+      - "E:/New folder/tests/package_consumer/build/install/sbin/"
+      - "E:/New folder/tests/package_consumer/build/install/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/dotnet/"
+      - "C:/Program Files/MATLAB/R2026a/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Program Files/GitHub CLI/"
+      - "C:/Program Files/Cloudflare/Cloudflare WARP/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/Scripts/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/GitHubDesktop/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Ollama/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Python/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/PowerToys/DSCModules/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Antigravity IDE/bin/"
+      - "C:/Users/Yaksha's Laptop/Downloads/flutter/bin/"
+      - "C:/Users/Yaksha's Laptop/.dotnet/tools/"
+      - "C:/ninja/"
+      - "C:/msys64/ucrt64/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Roaming/npm/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/cursor/resources/app/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Kiro-Cli/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/copilot-shim/"
+      - "C:/Program Files/Android/Android Studio/jbr/bin/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/platform-tools/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/build-tools/37.0.0/"
+      - "C:/Users/Yaksha's Laptop/tools/jadx/bin/"
+      - "C:/Users/Yaksha's Laptop/tools/bin/"
+      - "C:/Users/Yaksha's Laptop/tools/7zip/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@vscode/ripgrep-universal/bin/win32-x64/"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@github/copilot-sdk-win32-x64/ripgrep/bin/win32-x64/"
+      - "C:/Program Files/bin/"
+      - "C:/Program Files/sbin/"
+      - "C:/Program Files/"
+      - "C:/Program Files (x86)/bin/"
+      - "C:/Program Files (x86)/sbin/"
+      - "C:/Program Files (x86)/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/CMake/sbin/"
+      - "C:/Program Files/CMake/"
+      - "C:/Program Files (x86)/MiniTensorPackageConsumer/bin/"
+      - "C:/Program Files (x86)/MiniTensorPackageConsumer/sbin/"
+      - "C:/Program Files (x86)/MiniTensorPackageConsumer/"
+    searched_directories:
+      - "E:/New folder/tests/package_consumer/build/install/bin/rc.com"
+      - "E:/New folder/tests/package_consumer/build/install/bin/rc.exe"
+      - "E:/New folder/tests/package_consumer/build/install/bin/rc"
+      - "E:/New folder/tests/package_consumer/build/install/sbin/rc.com"
+      - "E:/New folder/tests/package_consumer/build/install/sbin/rc.exe"
+      - "E:/New folder/tests/package_consumer/build/install/sbin/rc"
+      - "E:/New folder/tests/package_consumer/build/install/rc.com"
+      - "E:/New folder/tests/package_consumer/build/install/rc.exe"
+      - "E:/New folder/tests/package_consumer/build/install/rc"
+      - "C:/Windows/System32/rc.com"
+      - "C:/Windows/System32/rc.exe"
+      - "C:/Windows/System32/rc"
+      - "C:/Windows/rc.com"
+      - "C:/Windows/rc.exe"
+      - "C:/Windows/rc"
+      - "C:/Windows/System32/wbem/rc.com"
+      - "C:/Windows/System32/wbem/rc.exe"
+      - "C:/Windows/System32/wbem/rc"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/rc.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/rc.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/rc"
+      - "C:/Windows/System32/OpenSSH/rc.com"
+      - "C:/Windows/System32/OpenSSH/rc.exe"
+      - "C:/Windows/System32/OpenSSH/rc"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/rc.com"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/rc.exe"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/rc"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/rc.com"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/rc.exe"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/rc"
+      - "C:/Program Files/Git/cmd/rc.com"
+      - "C:/Program Files/Git/cmd/rc.exe"
+      - "C:/Program Files/Git/cmd/rc"
+      - "C:/Program Files/CMake/bin/rc.com"
+      - "C:/Program Files/CMake/bin/rc.exe"
+      - "C:/Program Files/CMake/bin/rc"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/rc.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/rc.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/rc"
+      - "C:/Program Files/dotnet/rc.com"
+      - "C:/Program Files/dotnet/rc.exe"
+      - "C:/Program Files/dotnet/rc"
+      - "C:/Program Files/MATLAB/R2026a/bin/rc.com"
+      - "C:/Program Files/MATLAB/R2026a/bin/rc.exe"
+      - "C:/Program Files/MATLAB/R2026a/bin/rc"
+      - "C:/Program Files/nodejs/rc.com"
+      - "C:/Program Files/nodejs/rc.exe"
+      - "C:/Program Files/nodejs/rc"
+      - "C:/Program Files/GitHub CLI/rc.com"
+      - "C:/Program Files/GitHub CLI/rc.exe"
+      - "C:/Program Files/GitHub CLI/rc"
+      - "C:/Program Files/Cloudflare/Cloudflare WARP/rc.com"
+      - "C:/Program Files/Cloudflare/Cloudflare WARP/rc.exe"
+      - "C:/Program Files/Cloudflare/Cloudflare WARP/rc"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/Scripts/rc.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/Scripts/rc.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/Scripts/rc"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/rc.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/rc.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/rc"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Microsoft/WindowsApps/rc.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Microsoft/WindowsApps/rc.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Microsoft/WindowsApps/rc"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/GitHubDesktop/bin/rc.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/GitHubDesktop/bin/rc.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/GitHubDesktop/bin/rc"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/rc.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/rc.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/rc"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Ollama/rc.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Ollama/rc.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Ollama/rc"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Python/bin/rc.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Python/bin/rc.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Python/bin/rc"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/PowerToys/DSCModules/rc.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/PowerToys/DSCModules/rc.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/PowerToys/DSCModules/rc"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Antigravity IDE/bin/rc.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Antigravity IDE/bin/rc.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Antigravity IDE/bin/rc"
+      - "C:/Users/Yaksha's Laptop/Downloads/flutter/bin/rc.com"
+      - "C:/Users/Yaksha's Laptop/Downloads/flutter/bin/rc.exe"
+      - "C:/Users/Yaksha's Laptop/Downloads/flutter/bin/rc"
+      - "C:/Users/Yaksha's Laptop/.dotnet/tools/rc.com"
+      - "C:/Users/Yaksha's Laptop/.dotnet/tools/rc.exe"
+      - "C:/Users/Yaksha's Laptop/.dotnet/tools/rc"
+      - "C:/ninja/rc.com"
+      - "C:/ninja/rc.exe"
+      - "C:/ninja/rc"
+      - "C:/msys64/ucrt64/bin/rc.com"
+      - "C:/msys64/ucrt64/bin/rc.exe"
+      - "C:/msys64/ucrt64/bin/rc"
+      - "C:/Users/Yaksha's Laptop/AppData/Roaming/npm/rc.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Roaming/npm/rc.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Roaming/npm/rc"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/cursor/resources/app/bin/rc.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/cursor/resources/app/bin/rc.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/cursor/resources/app/bin/rc"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Kiro-Cli/rc.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Kiro-Cli/rc.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Kiro-Cli/rc"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/copilot-shim/rc.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/copilot-shim/rc.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/copilot-shim/rc"
+      - "C:/Program Files/Android/Android Studio/jbr/bin/rc.com"
+      - "C:/Program Files/Android/Android Studio/jbr/bin/rc.exe"
+      - "C:/Program Files/Android/Android Studio/jbr/bin/rc"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/platform-tools/rc.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/platform-tools/rc.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/platform-tools/rc"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/build-tools/37.0.0/rc.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/build-tools/37.0.0/rc.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/build-tools/37.0.0/rc"
+      - "C:/Users/Yaksha's Laptop/tools/jadx/bin/rc.com"
+      - "C:/Users/Yaksha's Laptop/tools/jadx/bin/rc.exe"
+      - "C:/Users/Yaksha's Laptop/tools/jadx/bin/rc"
+      - "C:/Users/Yaksha's Laptop/tools/bin/rc.com"
+      - "C:/Users/Yaksha's Laptop/tools/bin/rc.exe"
+      - "C:/Users/Yaksha's Laptop/tools/bin/rc"
+      - "C:/Users/Yaksha's Laptop/tools/7zip/rc.com"
+      - "C:/Users/Yaksha's Laptop/tools/7zip/rc.exe"
+      - "C:/Users/Yaksha's Laptop/tools/7zip/rc"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@vscode/ripgrep-universal/bin/win32-x64/rc.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@vscode/ripgrep-universal/bin/win32-x64/rc.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@vscode/ripgrep-universal/bin/win32-x64/rc"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@github/copilot-sdk-win32-x64/ripgrep/bin/win32-x64/rc.com"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@github/copilot-sdk-win32-x64/ripgrep/bin/win32-x64/rc.exe"
+      - "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@github/copilot-sdk-win32-x64/ripgrep/bin/win32-x64/rc"
+      - "C:/Program Files/bin/rc.com"
+      - "C:/Program Files/bin/rc.exe"
+      - "C:/Program Files/bin/rc"
+      - "C:/Program Files/sbin/rc.com"
+      - "C:/Program Files/sbin/rc.exe"
+      - "C:/Program Files/sbin/rc"
+      - "C:/Program Files/rc.com"
+      - "C:/Program Files/rc.exe"
+      - "C:/Program Files/rc"
+      - "C:/Program Files (x86)/bin/rc.com"
+      - "C:/Program Files (x86)/bin/rc.exe"
+      - "C:/Program Files (x86)/bin/rc"
+      - "C:/Program Files (x86)/sbin/rc.com"
+      - "C:/Program Files (x86)/sbin/rc.exe"
+      - "C:/Program Files (x86)/sbin/rc"
+      - "C:/Program Files (x86)/rc.com"
+      - "C:/Program Files (x86)/rc.exe"
+      - "C:/Program Files (x86)/rc"
+      - "C:/Program Files/CMake/bin/rc.com"
+      - "C:/Program Files/CMake/bin/rc.exe"
+      - "C:/Program Files/CMake/bin/rc"
+      - "C:/Program Files/CMake/sbin/rc.com"
+      - "C:/Program Files/CMake/sbin/rc.exe"
+      - "C:/Program Files/CMake/sbin/rc"
+      - "C:/Program Files/CMake/rc.com"
+      - "C:/Program Files/CMake/rc.exe"
+      - "C:/Program Files/CMake/rc"
+      - "C:/Program Files (x86)/MiniTensorPackageConsumer/bin/rc.com"
+      - "C:/Program Files (x86)/MiniTensorPackageConsumer/bin/rc.exe"
+      - "C:/Program Files (x86)/MiniTensorPackageConsumer/bin/rc"
+      - "C:/Program Files (x86)/MiniTensorPackageConsumer/sbin/rc.com"
+      - "C:/Program Files (x86)/MiniTensorPackageConsumer/sbin/rc.exe"
+      - "C:/Program Files (x86)/MiniTensorPackageConsumer/sbin/rc"
+      - "C:/Program Files (x86)/MiniTensorPackageConsumer/rc.com"
+      - "C:/Program Files (x86)/MiniTensorPackageConsumer/rc.exe"
+      - "C:/Program Files (x86)/MiniTensorPackageConsumer/rc"
+    found: false
+    search_context:
+      CMAKE_PREFIX_PATH:
+        - "build/install"
+      ENV{PATH}:
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\NvDLISR"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files\\MATLAB\\R2026a\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\GitHub CLI\\"
+        - "C:\\Program Files\\Cloudflare\\Cloudflare WARP\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Python\\Python310\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\GitHubDesktop\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Python\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\PowerToys\\DSCModules\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Antigravity IDE\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\Downloads\\flutter\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Users\\Yaksha's Laptop\\.dotnet\\tools"
+        - "C:\\ninja"
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Roaming\\npm"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Kiro-Cli\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\copilot-shim"
+        - "C:\\Program Files\\Android\\Android Studio\\jbr\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Android\\Sdk\\platform-tools"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Android\\Sdk\\build-tools\\37.0.0"
+        - "C:\\Users\\Yaksha's Laptop\\tools\\jadx\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\tools\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\tools\\7zip"
+        - "c:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Microsoft VS Code\\2c33b50b16\\resources\\app\\node_modules.asar.unpacked\\@vscode\\ripgrep-universal\\bin\\win32-x64"
+        - "c:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Microsoft VS Code\\2c33b50b16\\resources\\app\\node_modules.asar.unpacked\\@github\\copilot-sdk-win32-x64\\ripgrep\\bin\\win32-x64"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/MiniTensorPackageConsumer"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "C:/Program Files"
+        - "C:/Program Files (x86)"
+        - "C:/Program Files/CMake"
+        - "C:/Program Files (x86)/MiniTensorPackageConsumer"
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeDetermineCompilerABI.cmake:120 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "E:/New folder/build/package_consumer/CMakeFiles/CMakeScratch/TryCompile-w5ntb7"
+      binary: "E:/New folder/build/package_consumer/CMakeFiles/CMakeScratch/TryCompile-w5ntb7"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /GR /EHsc"
+      CMAKE_CXX_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_CXX_STDLIB_MODULES_JSON: ""
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: false
+      stdout: |
+        Change Dir: 'E:/New folder/build/package_consumer/CMakeFiles/CMakeScratch/TryCompile-w5ntb7'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_e922d.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
+        MSBuild version 18.7.8+1ac568fee for .NET Framework
+        Build started 05-11-2026 00:26:11.
+        
+        Project "E:\\New folder\\build\\package_consumer\\CMakeFiles\\CMakeScratch\\TryCompile-w5ntb7\\cmTC_e922d.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "E:\\New folder\\build\\package_consumer\\CMakeFiles\\CMakeScratch\\TryCompile-w5ntb7\\Debug\\".
+          Creating directory "cmTC_e922d.dir\\Debug\\cmTC_e922d.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_e922d.dir\\Debug\\cmTC_e922d.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_e922d.dir\\Debug\\cmTC_e922d.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.51.36231\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GR /Fo"cmTC_e922d.dir\\Debug\\\\" /Fd"cmTC_e922d.dir\\Debug\\vc145.pdb" /external:W1 /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.4\\Modules\\CMakeCXXCompilerABI.cpp"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.51.36248 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GR /Fo"cmTC_e922d.dir\\Debug\\\\" /Fd"cmTC_e922d.dir\\Debug\\vc145.pdb" /external:W1 /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.4\\Modules\\CMakeCXXCompilerABI.cpp"
+          CMakeCXXCompilerABI.cpp
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.51.36231\\bin\\HostX64\\x64\\link.exe /OUT:"E:\\New folder\\build\\package_consumer\\CMakeFiles\\CMakeScratch\\TryCompile-w5ntb7\\Debug\\cmTC_e922d.exe" /INCREMENTAL /ILK:"cmTC_e922d.dir\\Debug\\cmTC_e922d.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:/New folder/build/package_consumer/CMakeFiles/CMakeScratch/TryCompile-w5ntb7/Debug/cmTC_e922d.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"E:/New folder/build/package_consumer/CMakeFiles/CMakeScratch/TryCompile-w5ntb7/Debug/cmTC_e922d.lib" /MACHINE:X64  /machine:x64 cmTC_e922d.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_e922d.vcxproj -> E:\\New folder\\build\\package_consumer\\CMakeFiles\\CMakeScratch\\TryCompile-w5ntb7\\Debug\\cmTC_e922d.exe
+        FinalizeBuildStatus:
+          Deleting file "cmTC_e922d.dir\\Debug\\cmTC_e922d.tlog\\unsuccessfulbuild".
+          Touching "cmTC_e922d.dir\\Debug\\cmTC_e922d.tlog\\cmTC_e922d.lastbuildstate".
+        Done Building Project "E:\\New folder\\build\\package_consumer\\CMakeFiles\\CMakeScratch\\TryCompile-w5ntb7\\cmTC_e922d.vcxproj" (default targets).
+        
+        Build succeeded.
+            0 Warning(s)
+            0 Error(s)
+        
+        Time Elapsed 00:00:00.48
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeDetermineCompilerABI.cmake:288 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        link line: [  C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.51.36231\\bin\\HostX64\\x64\\link.exe /OUT:"E:\\New folder\\build\\package_consumer\\CMakeFiles\\CMakeScratch\\TryCompile-w5ntb7\\Debug\\cmTC_e922d.exe" /INCREMENTAL /ILK:"cmTC_e922d.dir\\Debug\\cmTC_e922d.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:/New folder/build/package_consumer/CMakeFiles/CMakeScratch/TryCompile-w5ntb7/Debug/cmTC_e922d.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"E:/New folder/build/package_consumer/CMakeFiles/CMakeScratch/TryCompile-w5ntb7/Debug/cmTC_e922d.lib" /MACHINE:X64  /machine:x64 cmTC_e922d.dir\\Debug\\CMakeCXXCompilerABI.obj] ==> linker [C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.51.36231\\bin\\HostX64\\x64\\link.exe]
+        linker tool for 'CXX': C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.51.36231/bin/HostX64/x64/link.exe 
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/Internal/CMakeDetermineLinkerId.cmake:41 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeDetermineCompilerABI.cmake:334 (cmake_determine_linker_id)"
+      - "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the CXX compiler's linker: "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.51.36231/bin/HostX64/x64/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.51.36248.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+  -
+    kind: "find_package-v1"
+    backtrace:
+      - "CMakeLists.txt:4 (find_package)"
+    name: "MiniTensor"
+    configs:
+      -
+        filename: "MiniTensor.cps"
+        kind: "cps"
+      -
+        filename: "minitensor.cps"
+        kind: "cps"
+      -
+        filename: "MiniTensorConfig.cmake"
+        kind: "cmake"
+      -
+        filename: "minitensor-config.cmake"
+        kind: "cmake"
+    version_request:
+      exact: false
+    settings:
+      required: "required_explicit"
+      quiet: false
+      global: false
+      policy_scope: true
+      bypass_provider: false
+      names:
+        - "MiniTensor"
+      path_suffixes:
+        - ""
+      paths:
+        CMAKE_FIND_USE_CMAKE_PATH: true
+        CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+        CMAKE_FIND_USE_INSTALL_PREFIX: true
+        CMAKE_FIND_USE_PACKAGE_ROOT_PATH: true
+        CMAKE_FIND_USE_CMAKE_PACKAGE_REGISTRY: true
+        CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY: true
+        CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
+    candidates:
+      -
+        path: "E:/New folder/build/package_consumer/CMakeFiles/pkgRedirects/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "E:/New folder/build/package_consumer/CMakeFiles/pkgRedirects/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "E:/New folder/build/package_consumer/CMakeFiles/pkgRedirects/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "E:/New folder/build/package_consumer/CMakeFiles/pkgRedirects/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "E:/New folder/build/package_consumer/CMakeFiles/pkgRedirects/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "E:/New folder/build/package_consumer/CMakeFiles/pkgRedirects/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Windows/System32/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Windows/System32/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Windows/System32/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Windows/System32/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Windows/System32/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Windows/System32/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Windows/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Windows/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Windows/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Windows/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Windows/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Windows/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Windows/System32/wbem/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Windows/System32/wbem/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Windows/System32/wbem/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Windows/System32/wbem/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Windows/System32/wbem/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Windows/System32/wbem/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Windows/System32/WindowsPowerShell/v1.0/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Windows/System32/WindowsPowerShell/v1.0/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Windows/System32/WindowsPowerShell/v1.0/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Windows/System32/WindowsPowerShell/v1.0/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Windows/System32/WindowsPowerShell/v1.0/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Windows/System32/WindowsPowerShell/v1.0/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Windows/System32/OpenSSH/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Windows/System32/OpenSSH/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Windows/System32/OpenSSH/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Windows/System32/OpenSSH/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Windows/System32/OpenSSH/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Windows/System32/OpenSSH/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/Git/cmd/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/Git/cmd/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/Git/cmd/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/Git/cmd/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/Git/cmd/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/Git/cmd/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/CMake/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/CMake/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/CMake/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/CMake/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/CMake/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/CMake/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/dotnet/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/dotnet/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/dotnet/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/dotnet/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/dotnet/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/dotnet/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/MATLAB/R2026a/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/MATLAB/R2026a/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/MATLAB/R2026a/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/MATLAB/R2026a/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/MATLAB/R2026a/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/MATLAB/R2026a/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/nodejs/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/nodejs/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/nodejs/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/nodejs/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/nodejs/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/nodejs/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/GitHub CLI/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/GitHub CLI/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/GitHub CLI/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/GitHub CLI/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/GitHub CLI/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/GitHub CLI/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/Cloudflare/Cloudflare WARP/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/Cloudflare/Cloudflare WARP/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/Cloudflare/Cloudflare WARP/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/Cloudflare/Cloudflare WARP/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/Cloudflare/Cloudflare WARP/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/Cloudflare/Cloudflare WARP/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/Scripts/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/Scripts/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/Scripts/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/Scripts/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/Scripts/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/Scripts/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Python/Python310/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Microsoft/WindowsApps/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Microsoft/WindowsApps/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Microsoft/WindowsApps/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Microsoft/WindowsApps/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Microsoft/WindowsApps/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Microsoft/WindowsApps/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/GitHubDesktop/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/GitHubDesktop/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/GitHubDesktop/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/GitHubDesktop/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/GitHubDesktop/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/GitHubDesktop/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Ollama/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Ollama/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Ollama/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Ollama/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Ollama/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Ollama/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Python/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Python/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Python/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Python/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Python/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Python/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/PowerToys/DSCModules/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/PowerToys/DSCModules/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/PowerToys/DSCModules/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/PowerToys/DSCModules/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/PowerToys/DSCModules/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/PowerToys/DSCModules/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Antigravity IDE/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Antigravity IDE/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Antigravity IDE/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Antigravity IDE/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Antigravity IDE/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Antigravity IDE/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/ninja/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/ninja/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/ninja/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/ninja/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/ninja/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/ninja/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/msys64/ucrt64/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/msys64/ucrt64/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/msys64/ucrt64/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/msys64/ucrt64/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/msys64/ucrt64/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/msys64/ucrt64/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Roaming/npm/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Roaming/npm/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Roaming/npm/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Roaming/npm/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Roaming/npm/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Roaming/npm/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/cursor/resources/app/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/cursor/resources/app/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/cursor/resources/app/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/cursor/resources/app/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/cursor/resources/app/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/cursor/resources/app/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Kiro-Cli/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Kiro-Cli/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Kiro-Cli/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Kiro-Cli/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Kiro-Cli/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Kiro-Cli/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/copilot-shim/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/copilot-shim/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/copilot-shim/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/copilot-shim/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/copilot-shim/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/bin/copilot-shim/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/Android/Android Studio/jbr/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/Android/Android Studio/jbr/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/Android/Android Studio/jbr/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/Android/Android Studio/jbr/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/Android/Android Studio/jbr/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/Android/Android Studio/jbr/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/platform-tools/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/platform-tools/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/platform-tools/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/platform-tools/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/platform-tools/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/platform-tools/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/build-tools/37.0.0/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/build-tools/37.0.0/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/build-tools/37.0.0/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/build-tools/37.0.0/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/build-tools/37.0.0/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Android/Sdk/build-tools/37.0.0/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/tools/jadx/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/tools/jadx/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/tools/jadx/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/tools/jadx/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/tools/jadx/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/tools/jadx/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/tools/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/tools/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/tools/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/tools/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/tools/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/tools/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/tools/7zip/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/tools/7zip/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/tools/7zip/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/tools/7zip/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/tools/7zip/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/tools/7zip/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@vscode/ripgrep-universal/bin/win32-x64/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@vscode/ripgrep-universal/bin/win32-x64/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@vscode/ripgrep-universal/bin/win32-x64/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@vscode/ripgrep-universal/bin/win32-x64/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@vscode/ripgrep-universal/bin/win32-x64/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@vscode/ripgrep-universal/bin/win32-x64/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@github/copilot-sdk-win32-x64/ripgrep/bin/win32-x64/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@github/copilot-sdk-win32-x64/ripgrep/bin/win32-x64/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@github/copilot-sdk-win32-x64/ripgrep/bin/win32-x64/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@github/copilot-sdk-win32-x64/ripgrep/bin/win32-x64/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@github/copilot-sdk-win32-x64/ripgrep/bin/win32-x64/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Users/Yaksha's Laptop/AppData/Local/Programs/Microsoft VS Code/2c33b50b16/resources/app/node_modules.asar.unpacked/@github/copilot-sdk-win32-x64/ripgrep/bin/win32-x64/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/CMake/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/CMake/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files (x86)/MiniTensorConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files (x86)/minitensor-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files (x86)/lib/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files (x86)/lib/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files (x86)/share/cps/MiniTensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files (x86)/share/cps/minitensor.cps"
+        mode: "cps"
+        reason: "no_exist"
+    found: null
+    search_context:
+      CMAKE_PREFIX_PATH:
+        - "build/install"
+      ENV{PATH}:
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\NvDLISR"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files\\MATLAB\\R2026a\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\GitHub CLI\\"
+        - "C:\\Program Files\\Cloudflare\\Cloudflare WARP\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Python\\Python310\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\GitHubDesktop\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Python\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\PowerToys\\DSCModules\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Antigravity IDE\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\Downloads\\flutter\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Users\\Yaksha's Laptop\\.dotnet\\tools"
+        - "C:\\ninja"
+        - "C:\\msys64\\ucrt64\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Roaming\\npm"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Kiro-Cli\\"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\copilot-shim"
+        - "C:\\Program Files\\Android\\Android Studio\\jbr\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Android\\Sdk\\platform-tools"
+        - "C:\\Users\\Yaksha's Laptop\\AppData\\Local\\Android\\Sdk\\build-tools\\37.0.0"
+        - "C:\\Users\\Yaksha's Laptop\\tools\\jadx\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\tools\\bin"
+        - "C:\\Users\\Yaksha's Laptop\\tools\\7zip"
+        - "c:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Microsoft VS Code\\2c33b50b16\\resources\\app\\node_modules.asar.unpacked\\@vscode\\ripgrep-universal\\bin\\win32-x64"
+        - "c:\\Users\\Yaksha's Laptop\\AppData\\Local\\Programs\\Microsoft VS Code\\2c33b50b16\\resources\\app\\node_modules.asar.unpacked\\@github\\copilot-sdk-win32-x64\\ripgrep\\bin\\win32-x64"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/MiniTensorPackageConsumer"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "C:/Program Files"
+        - "C:/Program Files (x86)"
+        - "C:/Program Files/CMake"
+        - "C:/Program Files (x86)/MiniTensorPackageConsumer"
+...

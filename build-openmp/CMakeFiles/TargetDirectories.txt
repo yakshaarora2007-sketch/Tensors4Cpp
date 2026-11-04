@@ -1,0 +1,10 @@
+E:/New folder/build-openmp/CMakeFiles/Experimental.dir
+E:/New folder/build-openmp/CMakeFiles/Nightly.dir
+E:/New folder/build-openmp/CMakeFiles/Continuous.dir
+E:/New folder/build-openmp/CMakeFiles/NightlyMemoryCheck.dir
+E:/New folder/build-openmp/CMakeFiles/test_tensor.dir
+E:/New folder/build-openmp/CMakeFiles/minitensor_benchmark.dir
+E:/New folder/build-openmp/CMakeFiles/RUN_TESTS.dir
+E:/New folder/build-openmp/CMakeFiles/INSTALL.dir
+E:/New folder/build-openmp/CMakeFiles/ALL_BUILD.dir
+E:/New folder/build-openmp/CMakeFiles/ZERO_CHECK.dir

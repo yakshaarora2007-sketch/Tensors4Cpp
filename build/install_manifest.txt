@@ -1,0 +1,10 @@
+E:/New folder/build\install/include/minitensor/indexing.hpp
+E:/New folder/build\install/include/minitensor/linalg.hpp
+E:/New folder/build\install/include/minitensor/minitensor.hpp
+E:/New folder/build\install/include/minitensor/operations.hpp
+E:/New folder/build\install/include/minitensor/tensor.hpp
+E:/New folder/build\install/share/doc/MiniTensor/README.md
+E:/New folder/build\install/share/doc/MiniTensor/LICENSE
+E:/New folder/build\install/lib/cmake/MiniTensor/MiniTensorTargets.cmake
+E:/New folder/build\install/lib/cmake/MiniTensor/MiniTensorConfig.cmake
+E:/New folder/build\install/lib/cmake/MiniTensor/MiniTensorConfigVersion.cmake

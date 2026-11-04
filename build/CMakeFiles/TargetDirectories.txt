@@ -1,0 +1,12 @@
+E:/New folder/build/CMakeFiles/Experimental.dir
+E:/New folder/build/CMakeFiles/Nightly.dir
+E:/New folder/build/CMakeFiles/Continuous.dir
+E:/New folder/build/CMakeFiles/NightlyMemoryCheck.dir
+E:/New folder/build/CMakeFiles/basic_tensor.dir
+E:/New folder/build/CMakeFiles/image_processing.dir
+E:/New folder/build/CMakeFiles/test_tensor.dir
+E:/New folder/build/CMakeFiles/minitensor_benchmark.dir
+E:/New folder/build/CMakeFiles/RUN_TESTS.dir
+E:/New folder/build/CMakeFiles/INSTALL.dir
+E:/New folder/build/CMakeFiles/ALL_BUILD.dir
+E:/New folder/build/CMakeFiles/ZERO_CHECK.dir

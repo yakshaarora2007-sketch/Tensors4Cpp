@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"E:/New folder/build/package_consumer/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

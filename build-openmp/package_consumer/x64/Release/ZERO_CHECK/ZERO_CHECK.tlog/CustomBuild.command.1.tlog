@@ -1,0 +1,10 @@
+^E:\NEW FOLDER\BUILD-OPENMP\PACKAGE_CONSUMER\CMAKEFILES\CDCC0FBF40658D940778E82DE3D3767D\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SE:/New folder/tests/package_consumer" "-BE:/New folder/build-openmp/package_consumer" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "E:/New folder/build-openmp/package_consumer/MiniTensorPackageConsumer.slnx"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,0 +1,10 @@
+^E:\NEW FOLDER\TESTS\PACKAGE_CONSUMER\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SE:/New folder/tests/package_consumer" "-BE:/New folder/build-openmp/package_consumer" --check-stamp-file "E:/New folder/build-openmp/package_consumer/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
