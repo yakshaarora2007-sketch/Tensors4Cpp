@@ -1,12 +1,5 @@
 # Design and Implementation of a Lightweight Multidimensional Tensor Library in C++
 
-**Author:** Yaksha Arora  
-**Affiliation:** Independent Research / Tensors4Cpp Project  
-**Repository:** [https://github.com/yakshaarora2007-sketch/Tensors4Cpp](https://github.com/yakshaarora2007-sketch/Tensors4Cpp)  
-**Date:** March 2026  
-**Document Type:** Technical Research Paper & System Specification  
-**Version:** 1.1.0 (Arbitrary-Rank Support)  
-
 ---
 
 ## Abstract

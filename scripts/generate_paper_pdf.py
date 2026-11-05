@@ -10,13 +10,13 @@ import sys
 import zlib
 from typing import List, Tuple, Dict, Any
 
-# Standard Letter Page dimensions in points (72 points per inch)
-PAGE_WIDTH = 612.0
-PAGE_HEIGHT = 792.0
-MARGIN_LEFT = 54.0
-MARGIN_RIGHT = 54.0
-MARGIN_TOP = 54.0
-MARGIN_BOTTOM = 54.0
+# Wide page dimensions in points (750 pt width x 842 pt height)
+PAGE_WIDTH = 750.0
+PAGE_HEIGHT = 842.0
+MARGIN_LEFT = 45.0
+MARGIN_RIGHT = 45.0
+MARGIN_TOP = 48.0
+MARGIN_BOTTOM = 48.0
 USABLE_WIDTH = PAGE_WIDTH - MARGIN_LEFT - MARGIN_RIGHT
 USABLE_HEIGHT = PAGE_HEIGHT - MARGIN_TOP - MARGIN_BOTTOM
 
@@ -59,9 +59,11 @@ def sanitize_pdf_text(text: str) -> str:
     for k, v in unicode_map.items():
         text = text.replace(k, v)
 
-    # 2. Markdown links: [text](url) -> text if text == url else text (url)
+    # 2. Markdown links: [text](url) -> if internal anchor: text; else text (url)
     def _link_repl(m):
         t, u = m.group(1), m.group(2)
+        if u.startswith('#'):
+            return t
         return t if t == u else f"{t} ({u})"
     text = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', _link_repl, text)
 
@@ -169,18 +171,18 @@ class FlowDocument:
             if page_num > 1:
                 page.set_stroke_color(0.80, 0.82, 0.86)
                 page.set_line_width(0.75)
-                page.draw_line(MARGIN_LEFT, PAGE_HEIGHT - 38.0, PAGE_WIDTH - MARGIN_RIGHT, PAGE_HEIGHT - 38.0)
+                page.draw_line(MARGIN_LEFT, PAGE_HEIGHT - 34.0, PAGE_WIDTH - MARGIN_RIGHT, PAGE_HEIGHT - 34.0)
                 page.draw_text("Design and Implementation of a Lightweight Multidimensional Tensor Library in C++",
-                               MARGIN_LEFT, PAGE_HEIGHT - 34.0, "F1", 8.0, 0.40, 0.42, 0.46)
+                               MARGIN_LEFT, PAGE_HEIGHT - 30.0, "F1", 8.0, 0.40, 0.42, 0.46)
             # Running Footer (All pages)
             page.set_stroke_color(0.80, 0.82, 0.86)
             page.set_line_width(0.75)
-            page.draw_line(MARGIN_LEFT, 42.0, PAGE_WIDTH - MARGIN_RIGHT, 42.0)
+            page.draw_line(MARGIN_LEFT, 36.0, PAGE_WIDTH - MARGIN_RIGHT, 36.0)
             page.draw_text("MiniTensor Technical Research Paper | Systems Engineering",
-                           MARGIN_LEFT, 30.0, "F1", 8.0, 0.42, 0.44, 0.48)
+                           MARGIN_LEFT, 24.0, "F1", 8.0, 0.42, 0.44, 0.48)
             page_str = f"Page {page_num} of {total_pages}"
             str_w = string_width_helvetica(page_str, 8.0)
-            page.draw_text(page_str, PAGE_WIDTH - MARGIN_RIGHT - str_w, 30.0, "F2", 8.0, 0.30, 0.32, 0.36)
+            page.draw_text(page_str, PAGE_WIDTH - MARGIN_RIGHT - str_w, 24.0, "F2", 8.0, 0.30, 0.32, 0.36)
 
 def wrap_text(text: str, font_size: float, max_width: float, is_code: bool = False) -> List[str]:
     text = sanitize_pdf_text(text).strip()
@@ -327,13 +329,18 @@ def render_markdown_to_pdf(md_content: str, output_pdf_path: str):
         # Handle Headings
         if line.startswith("# "):
             title_text = line[2:].strip()
-            doc.check_space(80.0)
+            # Wrap title gracefully so it never overflows or gets cut
+            wrapped_title = wrap_text(title_text, 16.0, USABLE_WIDTH)
+            block_h = len(wrapped_title) * 22.0 + 24.0
+            doc.check_space(block_h)
             doc.cursor_y -= 8.0
-            doc.current_page.draw_text(title_text, MARGIN_LEFT, doc.cursor_y, "F2", 17.0, 0.10, 0.18, 0.35)
-            doc.cursor_y -= 12.0
+            for tl in wrapped_title:
+                doc.current_page.draw_text(tl, MARGIN_LEFT, doc.cursor_y, "F2", 16.0, 0.10, 0.18, 0.35)
+                doc.cursor_y -= 22.0
+            doc.cursor_y += 6.0
             doc.current_page.set_stroke_color(0.18, 0.28, 0.45)
             doc.current_page.set_line_width(2.0)
-            doc.current_page.draw_line(MARGIN_LEFT, doc.cursor_y, MARGIN_LEFT + 140.0, doc.cursor_y)
+            doc.current_page.draw_line(MARGIN_LEFT, doc.cursor_y, MARGIN_LEFT + 160.0, doc.cursor_y)
             doc.cursor_y -= 14.0
             i += 1
             continue
@@ -369,15 +376,13 @@ def render_markdown_to_pdf(md_content: str, output_pdf_path: str):
             i += 1
             continue
 
-        # Handle Metadata lines
-        if any(line.startswith(prefix) for prefix in [
+        # Skip all metadata lines (Author, Affiliation, Repository, Date, Document Type, Version)
+        if any(line.strip().startswith(prefix) for prefix in [
             "**Author:**", "**Affiliation:**", "**Repository:**",
-            "**Date:**", "**Document Type:**", "**Version:**"
+            "**Date:**", "**Document Type:**", "**Version:**",
+            "Author:", "Affiliation:", "Repository:",
+            "Date:", "Document Type:", "Version:"
         ]):
-            doc.check_space(15.0)
-            clean_line = sanitize_pdf_text(line).replace("**", "")
-            doc.current_page.draw_text(clean_line, MARGIN_LEFT, doc.cursor_y, "F1", 8.8, 0.30, 0.34, 0.40)
-            doc.cursor_y -= 12.5
             i += 1
             continue
 
