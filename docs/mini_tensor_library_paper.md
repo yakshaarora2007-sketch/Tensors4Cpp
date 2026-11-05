@@ -1,8 +1,5 @@
 # Design and Implementation of a Lightweight Multidimensional Tensor Library in C++
 
-**Author:** [Author Placeholder]  
-**Affiliation:** [Institution / Organization Placeholder]  
-**Date:** March 2026  
 **Document Type:** Technical Research Paper  
 
 ---
@@ -422,59 +419,66 @@ template <typename Operation>
 
 Because MiniTensor requires identical shapes and maintains contiguous row-major layouts, element-wise operations operate as flat 1D loops over linear buffers. This permits modern compilers to auto-vectorize the loop using SIMD vector instructions (AVX2 / SSE / NEON).
 
-### 5.5 Matrix Multiplication Kernels: Serial, Blocked, and Parallel
+### 5.5 Matrix and Tensor Multiplication: Arbitrary-Rank and Batched Kernels
 
-MiniTensor provides three distinct execution kernels for 2D matrix multiplication:
+MiniTensor provides generalized tensor multiplication supporting operations across arbitrary ranks:
+- **Vector Dot Product (Rank 1 $\times$ Rank 1 $\to$ Rank 0):** Inner scalar contraction: $\sum_k A_k B_k$.
+- **Matrix-Vector Product (Rank 2 $\times$ Rank 1 $\to$ Rank 1):** $\sum_k A_{m, k} B_k$.
+- **Vector-Matrix Product (Rank 1 $\times$ Rank 2 $\to$ Rank 1):** $\sum_k A_k B_{k, n}$.
+- **Matrix Multiplication (Rank 2 $\times$ Rank 2 $\to$ Rank 2):** Standard $(M \times K) \times (K \times N) \to (M \times N)$.
+- **Batched Matrix Multiplication (Rank $\ge 3$):** Leading batch dimensions are aligned and broadcast:
+  $$(B_0, \dots, B_{p-1}, M, K) \times (B_0, \dots, B_{p-1}, K, N) \to (B_0, \dots, B_{p-1}, M, N)$$
+- **Arbitrary Axis Contraction (`tensordot`):** General tensor contraction across arbitrary paired axes.
 
 #### 1. Baseline Serial Kernel (`matmul`)
-Implements an optimized `i-k-j` loop traversal:
+Executes across all batch slices using an optimized `i-k-j` loop traversal:
 ```cpp
-for (std::size_t row = 0; row < dimensions.rows; ++row) {
-    for (std::size_t inner = 0; inner < dimensions.inner; ++inner) {
-        const T left = data_[row * dimensions.inner + inner];
-        for (std::size_t column = 0; column < dimensions.columns; ++column) {
-            result.data_[row * dimensions.columns + column] +=
-                left * other.data_[inner * dimensions.columns + column];
+for (std::size_t b = 0; b < plan.total_batches; ++b) {
+    // Resolve batch offsets via precomputed batch strides...
+    for (std::size_t row = 0; row < plan.rows; ++row) {
+        for (std::size_t inner = 0; inner < plan.inner; ++inner) {
+            const T left = data_[a_batch_off + row * a_row_stride + inner * a_inner_stride];
+            for (std::size_t column = 0; column < plan.columns; ++column) {
+                result.data_[res_batch_off + row * plan.columns + column] +=
+                    left * other.data_[b_batch_off + inner * b_inner_stride + column * b_col_stride];
+            }
         }
     }
 }
 ```
 
 #### 2. Cache-Blocked Kernel (`matmul_blocked`)
-Tiles both the row dimension and the inner contraction dimension into sub-blocks of size $B$ (default 64):
+Tiles both the row dimension and the inner contraction dimension into sub-blocks of size $B$ (default 64) across all batch slices:
 ```cpp
-for (std::size_t row_block = 0; row_block < dimensions.rows;) {
-    const std::size_t row_end =
-        row_block + std::min(block_size, dimensions.rows - row_block);
-    for (std::size_t inner_block = 0; inner_block < dimensions.inner;) {
-        const std::size_t inner_end =
-            inner_block + std::min(block_size, dimensions.inner - inner_block);
-        for (std::size_t row = row_block; row < row_end; ++row) {
-            for (std::size_t inner = inner_block; inner < inner_end; ++inner) {
-                const T left = data_[row * dimensions.inner + inner];
-                for (std::size_t column = 0; column < dimensions.columns; ++column) {
-                    result.data_[row * dimensions.columns + column] +=
-                        left * other.data_[inner * dimensions.columns + column];
+for (std::size_t b = 0; b < plan.total_batches; ++b) {
+    for (std::size_t row_block = 0; row_block < plan.rows;) {
+        const std::size_t row_end = row_block + std::min(block_size, plan.rows - row_block);
+        for (std::size_t inner_block = 0; inner_block < plan.inner;) {
+            const std::size_t inner_end = inner_block + std::min(block_size, plan.inner - inner_block);
+            for (std::size_t row = row_block; row < row_end; ++row) {
+                for (std::size_t inner = inner_block; inner < inner_end; ++inner) {
+                    const T left = data_[a_batch_off + row * a_row_stride + inner * a_inner_stride];
+                    for (std::size_t column = 0; column < plan.columns; ++column) {
+                        result.data_[res_batch_off + row * plan.columns + column] +=
+                            left * other.data_[b_batch_off + inner * b_inner_stride + column * b_col_stride];
+                    }
                 }
             }
+            inner_block = inner_end;
         }
-        inner_block = inner_end;
+        row_block = row_end;
     }
-    row_block = row_end;
 }
 ```
 
 #### 3. OpenMP Parallel Kernel (`matmul_parallel`)
-Parallelizes the outer row loop across threads using OpenMP when compiled with `MINITENSOR_USE_OPENMP`:
+Parallelizes across batches (when multiple batches exist) or across matrix rows (for single large matrices) using OpenMP:
 ```cpp
-#pragma omp parallel for if(large_workload) schedule(static)
-for (std::ptrdiff_t row = 0; row < static_cast<std::ptrdiff_t>(dimensions.rows); ++row) {
-    // Tiled row execution...
+#pragma omp parallel for schedule(static)
+for (std::ptrdiff_t b = 0; b < static_cast<std::ptrdiff_t>(plan.total_batches); ++b) {
+    // Process batch slice b without write contention...
 }
 ```
-To mitigate thread creation overhead on small workloads, MiniTensor applies a heuristic:
-$$\text{large\_workload} \iff (M \ge 64 \land N \ge 64 \land K \ge 64)$$
-When OpenMP is disabled at compile time, `matmul_parallel()` gracefully falls back to the baseline serial kernel.
 
 ### 5.6 Materialized Reshaping and Transposition
 
@@ -662,8 +666,8 @@ In computational physics and finite-difference methods (e.g., solving the 2D hea
 
 To maintain technical accuracy, the current limitations of MiniTensor are explicitly identified:
 1. **CPU Only:** No GPU acceleration (CUDA, ROCm, or SYCL) is implemented.
-2. **Strict Shape Matching:** No implicit broadcasting is supported; operations between tensors of differing shapes throw `std::invalid_argument`.
-3. **2D-Restricted Linear Algebra:** Matrix multiplication (`matmul`) and transposition (`transpose`) are restricted to rank-2 tensors. Higher-rank batched contractions (e.g., $(B \times M \times K) \times (B \times K \times N)$) are unsupported.
+2. **No Implicit Element-Wise Broadcasting:** Element-wise binary operations require identical shapes (matrix multiplication supports batch broadcasting).
+3. **2D-Only Transposition:** Transposing higher-rank tensors by arbitrary axis permutation is not implemented (users can contract arbitrary axes using `tensordot`).
 4. **No Non-Owning Slices/Views:** Operations like `reshape` and `transpose` allocate new owning tensors rather than returning strided non-owning views.
 5. **No Automatic Differentiation:** MiniTensor does not provide computational graph tracing or backpropagation.
 
@@ -671,8 +675,8 @@ To maintain technical accuracy, the current limitations of MiniTensor are explic
 
 Future development can expand MiniTensor while preserving its lightweight design:
 - **Zero-Copy Views and Strided Slicing:** Introducing a lightweight non-owning `TensorView<T>` type modeling sub-regions of existing tensor storage without memory allocation.
-- **Batched Matrix Multiplication:** Generalizing `matmul` to arbitrary-rank tensors by contracting along the final two dimensions over leading batch axes.
-- **Explicit Broadcasting Utilities:** Implementing explicit broadcast functions that calculate virtual zero-strides along singleton dimensions.
+- **Multidimensional Transposition / Permutation:** Generalizing axis transposition across arbitrary rank permutations.
+- **Explicit Element-Wise Broadcasting Utilities:** Implementing explicit broadcast functions that calculate virtual zero-strides along singleton dimensions.
 - **Reduction Operations:** Adding axis-directed reductions such as `sum`, `mean`, and `max`.
 
 ---
@@ -703,4 +707,3 @@ Empirical evaluations validate that MiniTensor achieves up to a **$5.49\times$ s
 [11] OpenMP Architecture Review Board, "OpenMP Application Programming Interface Version 5.0," Nov. 2018.
 [12] K. Goto and R. A. van de Geijn, "Anatomy of high-performance matrix multiplication," ACM Transactions on Mathematical Software, vol. 34, no. 3, pp. 12:1–12:25, 2008.
 ```
-

@@ -239,13 +239,77 @@ void test_matrix_multiplication() {
         "Matrix multiplication should reject mismatched inner dimensions");
     require_throws<std::invalid_argument>(
         [] {
-            const minitensor::Tensor<int> vector({2});
-            static_cast<void>(vector.matmul(vector));
+            const minitensor::Tensor<int> scalar;
+            static_cast<void>(scalar.matmul(scalar));
         },
-        "Matrix multiplication should reject non-matrix tensors");
+        "Matrix multiplication should reject scalar tensors");
     require_throws<std::invalid_argument>(
         [&left] { static_cast<void>(left.matmul_blocked(left, 0)); },
         "Blocked multiplication should reject a zero block size");
+
+    // 1D Vector Dot Product (Rank 1 x Rank 1 -> Rank 0 Scalar)
+    const minitensor::Tensor<int> v1({3}, std::vector<int>{1, 2, 3});
+    const minitensor::Tensor<int> v2({3}, std::vector<int>{4, 5, 6});
+    const auto dot_res = v1.matmul(v2);
+    require(dot_res.rank() == 0 && dot_res() == 32,
+            "1D vector dot product result is incorrect");
+
+    // Matrix-Vector Product (Rank 2 x Rank 1 -> Rank 1)
+    const minitensor::Tensor<int> mv_mat({2, 3}, std::vector<int>{1, 2, 3, 4, 5, 6});
+    const minitensor::Tensor<int> mv_vec({3}, std::vector<int>{2, 1, 3});
+    const auto mv_res = mv_mat.matmul(mv_vec);
+    require(mv_res.rank() == 1 && mv_res.get_shape() == std::vector<std::size_t>({2}) &&
+            mv_res.get_data() == std::vector<int>({13, 31}),
+            "Matrix-vector multiplication result is incorrect");
+
+    // Vector-Matrix Product (Rank 1 x Rank 2 -> Rank 1)
+    const minitensor::Tensor<int> vm_vec({2}, std::vector<int>{2, 3});
+    const auto vm_res = vm_vec.matmul(mv_mat);
+    require(vm_res.rank() == 1 && vm_res.get_shape() == std::vector<std::size_t>({3}) &&
+            vm_res.get_data() == std::vector<int>({14, 19, 24}),
+            "Vector-matrix multiplication result is incorrect");
+
+    // Higher-Rank Batched Matrix Multiplication (Rank 3: [2, 2, 2] x [2, 2, 2] -> [2, 2, 2])
+    const minitensor::Tensor<int> batch_a({2, 2, 2}, std::vector<int>{1, 2, 3, 4, 5, 6, 7, 8});
+    const minitensor::Tensor<int> batch_b({2, 2, 2}, std::vector<int>{2, 0, 1, 2, 1, 3, 2, 4});
+    const auto batch_res = batch_a.matmul(batch_b);
+    require(batch_res.rank() == 3 && batch_res.get_shape() == std::vector<std::size_t>({2, 2, 2}) &&
+            batch_res.get_data() == std::vector<int>({4, 4, 10, 8, 17, 39, 23, 53}),
+            "3D batched matrix multiplication result is incorrect");
+
+    // Batched blocked and parallel checks
+    require(batch_a.matmul_blocked(batch_b, 1).get_data() == batch_res.get_data(),
+            "3D blocked batched multiplication differs from serial");
+    require(batch_a.matmul_parallel(batch_b, 1).get_data() == batch_res.get_data(),
+            "3D parallel batched multiplication differs from serial");
+
+    // Broadcast Batched Multiplication (Rank 3 [2, 2, 2] x Rank 2 [2, 2] -> Rank 3 [2, 2, 2])
+    const minitensor::Tensor<int> mat_2d({2, 2}, std::vector<int>{1, 1, 0, 1});
+    const auto bcast_res = batch_a.matmul(mat_2d);
+    require(bcast_res.rank() == 3 && bcast_res.get_shape() == std::vector<std::size_t>({2, 2, 2}) &&
+            bcast_res.get_data() == std::vector<int>({1, 3, 3, 7, 5, 11, 7, 15}),
+            "Broadcast batched matrix multiplication result is incorrect");
+
+    // Rank 4 Multi-Batch Matrix Multiplication ([2, 2, 2, 2] x [2, 2, 2, 2] -> [2, 2, 2, 2])
+    const minitensor::Tensor<int> r4_a({2, 2, 2, 2}, 1);
+    const minitensor::Tensor<int> r4_b({2, 2, 2, 2}, 2);
+    const auto r4_res = r4_a.matmul(r4_b);
+    require(r4_res.rank() == 4 && r4_res.get_shape() == std::vector<std::size_t>({2, 2, 2, 2}) &&
+            r4_res.get_data() == std::vector<int>(16, 4),
+            "4D multi-batch matrix multiplication result is incorrect");
+
+    // Incompatible Batch Dimensions Rejection
+    require_throws<std::invalid_argument>(
+        [&batch_a] {
+            const minitensor::Tensor<int> bad_batch({3, 2, 2}, 1);
+            static_cast<void>(batch_a.matmul(bad_batch));
+        },
+        "Matrix multiplication should reject incompatible batch dimensions");
+
+    // Tensordot verification
+    const auto tdot_res = v1.tensordot(v2, 1);
+    require(tdot_res.rank() == 0 && tdot_res() == 32,
+            "Tensordot vector dot product is incorrect");
 }
 
 void test_reshape_and_transpose() {

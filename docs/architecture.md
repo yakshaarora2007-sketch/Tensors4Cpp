@@ -47,6 +47,7 @@ minitensor/
 ├── CMakeLists.txt                 # Master build and package configuration
 ├── LICENSE                        # MIT License
 ├── README.md                      # Primary project manual and user guide
+├── RELEASE_AND_USAGE.md           # Download, GitHub Releases packaging, and usage guide
 ├── cmake/
 │   └── MiniTensorConfig.cmake.in  # CMake package config template for find_package()
 ├── docs/                          # Detailed technical documentation guides
@@ -61,7 +62,11 @@ minitensor/
 │   ├── tensor_fundamentals.md     # Beginner's zero-to-hero primer on tensors
 │   ├── tensor_internals.md        # Class layout, calculate_strides, calculate_offset
 │   └── usage_tutorial.md          # 15-step progressive coding tutorial
+├── release/                       # Standalone GitHub Releases assets
+│   ├── minitensor.hpp             # Standalone amalgamated single-header file
+│   └── minitensor-v1.1.0.zip      # Complete release archive for GitHub Releases
 ├── scripts/
+│   ├── create_release_bundle.py   # Script to package single-header and release zip
 │   └── generate_paper_pdf.py      # Reproducible generator for mini_tensor_library_paper.pdf
 ├── include/
 │   └── minitensor/

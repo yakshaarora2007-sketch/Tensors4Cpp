@@ -391,24 +391,37 @@ template <typename... Indices>
 
 ---
 
-## Linear Algebra and Matrix Multiplication
+## Linear Algebra and Matrix/Tensor Multiplication
 
 ### `matmul(other)`
 ```cpp
 [[nodiscard]] Tensor matmul(const Tensor& other) const;
 ```
-- **Description:** Performs serial matrix multiplication between two 2D matrices using a cache-friendly row-major `i-k-j` algorithm.
+- **Description:** Performs generalized tensor and matrix multiplication across arbitrary ranks using a cache-friendly row-major `i-k-j` algorithm.
+  - **Rank 1 with Rank 1:** Computes scalar vector dot product: $(K) \times (K) \to$ Scalar `{}`.
+  - **Rank 2 with Rank 1:** Computes matrix-vector product: $(M \times K) \times (K) \to (M)$.
+  - **Rank 1 with Rank 2:** Computes vector-matrix product: $(K) \times (K \times N) \to (N)$.
+  - **Rank 2 with Rank 2:** Computes standard matrix product: $(M \times K) \times (K \times N) \to (M \times N)$.
+  - **Rank 3+ (Batched Matmul):** Multiplies arbitrary batches of 2D matrices across any number of leading batch dimensions $(B_0, \dots, B_{p-1}, M, K) \times (B_0, \dots, B_{p-1}, K, N) \to (B_0, \dots, B_{p-1}, M, N)$.
+  - **Batch Broadcasting:** Automatically broadcasts 2D matrices across higher-rank batches.
 - **Parameters:**
-  - `other`: Right-hand matrix $(K \times N)$.
-- **Return Value:** New `Tensor<T>` of shape $(M \times N)$.
+  - `other`: Right-hand tensor.
+- **Return Value:** New `Tensor<T>` containing the contracted product.
 - **Exceptions:**
-  - `std::invalid_argument`: If either tensor is not Rank 2 (`rank() != 2`).
-  - `std::invalid_argument`: If inner dimensions do not match (`shape_[1] != other.shape_[0]`).
+  - `std::invalid_argument`: If either operand has rank 0.
+  - `std::invalid_argument`: If inner dimensions do not match.
+  - `std::invalid_argument`: If batch dimensions are incompatible.
 - **Example:**
   ```cpp
-  minitensor::Tensor<float> a({2, 3}, 1.0f);
-  minitensor::Tensor<float> b({3, 4}, 2.0f);
-  auto c = a.matmul(b); // Shape {2, 4}
+  // 1D Dot product:
+  minitensor::Tensor<int> v1({3}, {1, 2, 3});
+  minitensor::Tensor<int> v2({3}, {4, 5, 6});
+  auto dot = v1.matmul(v2); // Rank 0, value 32
+
+  // 3D Batched Matrix Multiplication:
+  minitensor::Tensor<float> a({2, 3, 4}, 1.0f);
+  minitensor::Tensor<float> b({2, 4, 5}, 2.0f);
+  auto c = a.matmul(b); // Shape {2, 3, 5}
   ```
 
 ---
@@ -417,9 +430,9 @@ template <typename... Indices>
 ```cpp
 [[nodiscard]] Tensor matmul_blocked(const Tensor& other, std::size_t block_size = 64) const;
 ```
-- **Description:** Performs cache-blocked (tiled) matrix multiplication, keeping active sub-matrices inside the CPU L1/L2 cache.
+- **Description:** Performs cache-blocked (tiled) multiplication across all batch slices, keeping active sub-matrices inside the CPU L1/L2 cache. Supports arbitrary ranks.
 - **Parameters:**
-  - `other`: Right-hand matrix.
+  - `other`: Right-hand tensor.
   - `block_size`: Dimension tile size (default `64`). Must be $> 0$.
 - **Exceptions:**
   - `std::invalid_argument`: If `block_size == 0`.
@@ -435,14 +448,38 @@ template <typename... Indices>
 ```cpp
 [[nodiscard]] Tensor matmul_parallel(const Tensor& other, std::size_t block_size = 64) const;
 ```
-- **Description:** Performs multithreaded matrix multiplication using OpenMP (when compiled with `MINITENSOR_ENABLE_OPENMP=ON`). Falls back to `matmul(other)` if OpenMP is not enabled or for small workloads ($< 64 \times 64 \times 64$).
+- **Description:** Performs multithreaded matrix and tensor multiplication using OpenMP (when compiled with `MINITENSOR_ENABLE_OPENMP=ON`). Parallelizes across batch slices when multiple batches exist, or across rows for single large matrices. Falls back to `matmul(other)` if OpenMP is not enabled. Supports arbitrary ranks.
 - **Parameters:**
-  - `other`: Right-hand matrix.
+  - `other`: Right-hand tensor.
   - `block_size`: Inner block size (default `64`).
 - **Exceptions:** Same as `matmul_blocked()`.
 - **Example:**
   ```cpp
   auto c = a.matmul_parallel(b);
+  ```
+
+---
+
+### `tensordot(other, axes)`
+```cpp
+[[nodiscard]] Tensor tensordot(const Tensor& other, std::size_t axes = 2) const;
+[[nodiscard]] Tensor tensordot(const Tensor& other,
+                               const std::vector<std::size_t>& axes_a,
+                               const std::vector<std::size_t>& axes_b) const;
+```
+- **Description:** Contracts two tensors along arbitrary specified axes (identical to NumPy's `numpy.tensordot`).
+- **Parameters:**
+  - `other`: Second tensor to contract with.
+  - `axes`: Number of trailing axes of this tensor to contract with leading axes of `other` (default 2).
+  - `axes_a`, `axes_b`: Explicit vectors of axes to contract along.
+- **Exceptions:**
+  - `std::invalid_argument`: If `axes_a.size() != axes_b.size()` or if contracted dimension lengths do not match.
+  - `std::out_of_range`: If an axis index exceeds tensor rank.
+- **Example:**
+  ```cpp
+  minitensor::Tensor<int> a({2, 3, 4}, 1);
+  minitensor::Tensor<int> b({4, 3, 5}, 2);
+  auto contracted = a.tensordot(b, {2, 1}, {0, 1}); // Result shape: {2, 5}
   ```
 
 ---

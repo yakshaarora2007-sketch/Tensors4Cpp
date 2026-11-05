@@ -145,19 +145,44 @@ auto result = matrix + vector;
 
 ---
 
-## 6. Matrix Multiplication (`matmul`)
+## 6. Matrix and Tensor Multiplication (`matmul`) Across Arbitrary Ranks
 
-Matrix multiplication is the workhorse of scientific computing, computer graphics, physics engines, and neural networks.
+MiniTensor provides a generalized tensor multiplication engine that extends standard linear algebra across arbitrary dimensional ranks:
+
+### Supported Rank Configurations
+
+1. **Rank 1 with Rank 1 (Vector Dot Product):**
+   Given $A \in \mathbb{R}^K$ and $B \in \mathbb{R}^K$, computes the inner scalar dot product:
+   $$C = \sum_{k=0}^{K-1} A_k \cdot B_k$$
+   Returns a **Rank 0 scalar tensor** of shape `{}`.
+
+2. **Rank 2 with Rank 1 (Matrix-Vector Product):**
+   Given $A \in \mathbb{R}^{M \times K}$ and $B \in \mathbb{R}^K$, computes:
+   $$C_m = \sum_{k=0}^{K-1} A_{m, k} \cdot B_k$$
+   Returns a **Rank 1 tensor** of shape `{M}`.
+
+3. **Rank 1 with Rank 2 (Vector-Matrix Product):**
+   Given $A \in \mathbb{R}^K$ and $B \in \mathbb{R}^{K \times N}$, computes:
+   $$C_n = \sum_{k=0}^{K-1} A_k \cdot B_{k, n}$$
+   Returns a **Rank 1 tensor** of shape `{N}`.
+
+4. **Rank 2 with Rank 2 (Standard Matrix Multiplication):**
+   Given $A \in \mathbb{R}^{M \times K}$ and $B \in \mathbb{R}^{K \times N}$, computes:
+   $$C_{m, n} = \sum_{k=0}^{K-1} A_{m, k} \cdot B_{k, n}$$
+   Returns a **Rank 2 tensor** of shape `{M, N}`.
+
+5. **Rank 3+ (Arbitrary-Rank Batched Matrix Multiplication):**
+   Given tensors of rank $\ge 2$ with leading batch dimensions $(B_0, \dots, B_{p-1})$:
+   $$(B_0, \dots, B_{p-1}, M, K) \times (B_0, \dots, B_{p-1}, K, N) \to (B_0, \dots, B_{p-1}, M, N)$$
+   For each batch coordinate, the 2D matrix slices are multiplied independently.
+
+6. **Batch Dimension Broadcasting:**
+   If one operand has batch dimensions (e.g. $(B \times M \times K)$) and the other is a 2D matrix ($(K \times N)$), MiniTensor automatically broadcasts the 2D matrix across all batches of the higher-rank tensor, producing shape $(B \times M \times N)$ without data duplication.
 
 ### Mathematical Definition and the Inner-Dimension Rule
 
-Matrix multiplication is defined **only for two-dimensional tensors (Rank 2)**.
-
-Suppose matrix $A$ has shape $(M \times K)$ and matrix $B$ has shape $(K \times N)$.
-- The **inner dimensions** must be identical: the number of columns in $A$ ($K$) must equal the number of rows in $B$ ($K$).
-- The resulting matrix $C$ has shape $(M \times N)$:
-
-$$\underbrace{(M \times K)}_{\text{Matrix } A} \times \underbrace{(K \times N)}_{\text{Matrix } B} = \underbrace{(M \times N)}_{\text{Matrix } C}$$
+In all cases, the contraction dimension (the inner dimension) must match:
+$$\text{Inner Dimension of } A == \text{Inner Dimension of } B$$
 
 Each element $C[i, j]$ is computed by taking Row $i$ of matrix $A$, Column $j$ of matrix $B$, multiplying their matching entries, and adding up the results (the dot product):
 
@@ -343,16 +368,35 @@ minitensor::Tensor<int> transposed = matrix.transpose();
 
 ---
 
-## 11. Summary Table of Time and Space Complexity
+## 11. General Tensor Contraction (`tensordot`)
+
+### A. Mathematical Explanation
+`tensordot` computes tensor contractions along arbitrary specified axes:
+- `A.tensordot(B, axes)`: contracts the last `axes` dimensions of $A$ with the first `axes` dimensions of $B$.
+- `A.tensordot(B, axes_a, axes_b)`: contracts specific axis pairs $(a_i, b_i)$.
+
+### B. C++ Code Example
+```cpp
+minitensor::Tensor<int> a({2, 3, 4}, 1);
+minitensor::Tensor<int> b({4, 3, 5}, 2);
+
+// Contract axis 2 of a with axis 0 of b, and axis 1 of a with axis 1 of b:
+auto result = a.tensordot(b, {2, 1}, {0, 1}); // Result shape: {2, 5}
+```
+
+---
+
+## 12. Summary Table of Time and Space Complexity
 
 | Operation | C++ Method / Operator | Required Ranks / Constraints | Time Complexity | Extra Space Complexity |
 | :--- | :--- | :--- | :---: | :---: |
 | **Addition** | `A + B` | Identical shapes required | $O(N)$ | $O(N)$ |
 | **Subtraction** | `A - B` | Identical shapes required | $O(N)$ | $O(N)$ |
 | **Element Multiplication** | `A * B` | Identical shapes required | $O(N)$ | $O(N)$ |
-| **Matrix Multiplication** | `A.matmul(B)` | Both Rank 2; $A_{\text{cols}} == B_{\text{rows}}$ | $O(M \times K \times N)$ | $O(M \times N)$ |
-| **Blocked Matrix Mul** | `A.matmul_blocked(B, block)` | Both Rank 2; `block_size > 0` | $O(M \times K \times N)$ | $O(M \times N)$ |
-| **Parallel Matrix Mul** | `A.matmul_parallel(B, block)`| Both Rank 2; OpenMP optional | $O(\frac{M \times K \times N}{P})$* | $O(M \times N)$ |
+| **Matrix/Tensor Multiplication** | `A.matmul(B)` | Rank $\ge 1$; inner dimensions must match | $O(B_{\text{total}} \cdot M \cdot K \cdot N)$ | $O(B_{\text{total}} \cdot M \cdot N)$ |
+| **Blocked Tensor Mul** | `A.matmul_blocked(B, block)` | Rank $\ge 1$; `block_size > 0` | $O(B_{\text{total}} \cdot M \cdot K \cdot N)$ | $O(B_{\text{total}} \cdot M \cdot N)$ |
+| **Parallel Tensor Mul** | `A.matmul_parallel(B, block)`| Rank $\ge 1$; OpenMP optional | $O(\frac{B_{\text{total}} \cdot M \cdot K \cdot N}{P})^*$ | $O(B_{\text{total}} \cdot M \cdot N)$ |
+| **Tensor Contraction** | `A.tensordot(B, axes_a, axes_b)` | Matching contracted dimension lengths | $O(\text{size}_A \cdot \text{size}_B / K)$ | $O(\text{result\_size})$ |
 | **Reshape** | `A.reshape(new_shape)` | New shape product == old size | $O(N)$ | $O(N)$ |
 | **Transpose** | `A.transpose()` | Rank 2 only | $O(M \times N)$ | $O(M \times N)$ |
 

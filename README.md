@@ -12,6 +12,7 @@ This `README.md` provides a comprehensive overview of the library. For in-depth 
 
 | Guide | Description | Key Topics |
 | :--- | :--- | :--- |
+| 📦 [**Download & GitHub Release Guide**](RELEASE_AND_USAGE.md) | Release packaging and integration manual. | Single-header distribution, GitHub Releases upload, CMake FetchContent. |
 | 📖 [**Tensor Fundamentals**](docs/tensor_fundamentals.md) | Zero-to-hero primer on multidimensional data. | Scalars, vectors, matrices, rank, shape, strides, row-major order. |
 | 🔬 [**Tensor Internals**](docs/tensor_internals.md) | Architectural deep dive into the `Tensor<T>` class. | Class layout, `calculate_size`, overflow checks, stride calculations. |
 | 🛡️ [**Memory Management & Safety**](docs/memory_management.md) | Memory safety, RAII, and cache performance. | Contiguous buffers, deep copies, move semantics, spatial locality. |
@@ -285,9 +286,10 @@ Below is a reference summary of the public API of `minitensor::Tensor<T>`. For f
 | **Arithmetic** | `operator+` | Element-wise addition (identical shapes required). |
 | | `operator-` | Element-wise subtraction (identical shapes required). |
 | | `operator*` | Element-wise multiplication (Hadamard product). |
-| **Linear Algebra**| `matmul(other)` | Serial 2D matrix multiplication (`i-k-j` cache-optimized). |
-| | `matmul_blocked(other, B)` | Cache-tiled matrix multiplication (sub-block size $B$, default 64). |
-| | `matmul_parallel(other, B)`| Multithreaded OpenMP matrix multiplication. |
+| **Linear Algebra**| `matmul(other)` | Arbitrary-rank tensor and batched matrix multiplication (`i-k-j` cache-optimized). |
+| | `matmul_blocked(other, B)` | Cache-tiled matrix and batched multiplication (sub-block size $B$, default 64). |
+| | `matmul_parallel(other, B)`| Multithreaded OpenMP tensor and batched multiplication. |
+| | `tensordot(other, axes)` | General tensor contraction along specified axes. |
 | **Geometry** | `reshape(new_shape)` | Creates a new owning tensor with new shape (same element count). |
 | | `transpose()` | Swaps rows and columns of a 2D matrix. |
 
@@ -302,11 +304,18 @@ Below is a reference summary of the public API of `minitensor::Tensor<T>`. For f
 > [!IMPORTANT]
 > **No Implicit Broadcasting:** MiniTensor strictly enforces exact shape equality for element-wise operations. It does not perform implicit broadcasting.
 
-### Matrix Multiplication (`matmul`) and the `i-k-j` Optimization
-Matrix multiplication requires both tensors to be **Rank 2 (matrices)**, and the inner dimensions must match:
-$$\underbrace{(M \times K)}_{A} \times \underbrace{(K \times N)}_{B} = \underbrace{(M \times N)}_{C}$$
+### Tensor Multiplication (`matmul`) Across Arbitrary Ranks
+MiniTensor supports **generalized tensor and batched matrix multiplication** across arbitrary ranks:
+- **Rank 1 with Rank 1 (Vector Dot Product):** $(K) \times (K) \to$ Scalar (Rank 0).
+- **Rank 2 with Rank 1 (Matrix-Vector):** $(M \times K) \times (K) \to (M)$ (Rank 1).
+- **Rank 1 with Rank 2 (Vector-Matrix):** $(K) \times (K \times N) \to (N)$ (Rank 1).
+- **Rank 2 with Rank 2 (Standard Matrix):** $(M \times K) \times (K \times N) \to (M \times N)$ (Rank 2).
+- **Rank 3+ (Batched Matrix Multiplication):** Arbitrary leading batch dimensions:
+  $$(B_0, \dots, B_{p-1}, M, K) \times (B_0, \dots, B_{p-1}, K, N) \to (B_0, \dots, B_{p-1}, M, N)$$
+- **Batch Broadcasting:** Multiplying a batched tensor $(B \times M \times K)$ by a 2D matrix $(K \times N)$ automatically broadcasts across all batches.
+- **Arbitrary-Axis Contraction:** `A.tensordot(B, axes_a, axes_b)` contracts along arbitrary axes.
 
-MiniTensor orders loops as `row -> inner -> col` (`i-k-j`):
+For each matrix slice, MiniTensor orders inner loops as `row -> inner -> col` (`i-k-j`):
 ```cpp
 for (size_t row = 0; row < M; ++row) {
     for (size_t inner = 0; inner < K; ++inner) {
@@ -317,13 +326,13 @@ for (size_t row = 0; row < M; ++row) {
     }
 }
 ```
-This avoids vertical column traversals and maximizes cache line hits.
+This avoids vertical column traversals and maximizes cache line hits across all batches.
 
 ### Cache-Blocked Matrix Multiplication (`matmul_blocked`)
-For large matrices that exceed L1/L2 cache capacity, `matmul_blocked(other, block_size)` tiles the computation into sub-matrices of size $B \times B$ (default 64). Data in each tile stays cache-hot during calculation.
+For large matrices that exceed L1/L2 cache capacity, `matmul_blocked(other, block_size)` tiles the computation into sub-matrices of size $B \times B$ (default 64) across every batch. Data in each tile stays cache-hot during calculation.
 
 ### Parallel Matrix Multiplication (`matmul_parallel`)
-When compiled with OpenMP (`MINITENSOR_ENABLE_OPENMP=ON`), `matmul_parallel()` distributes output rows across CPU cores using `#pragma omp parallel for`. Small workloads ($< 64 \times 64 \times 64$) run serially to avoid thread spawn overhead. If OpenMP is disabled, it gracefully falls back to serial `matmul()`.
+When compiled with OpenMP (`MINITENSOR_ENABLE_OPENMP=ON`), `matmul_parallel()` parallelizes across batch dimensions or output rows using `#pragma omp parallel for`. Small workloads ($< 64 \times 64 \times 64$) run serially to avoid thread spawn overhead. If OpenMP is disabled, it gracefully falls back to serial `matmul()`.
 
 ### Reshaping and Transposing
 - `reshape(new_shape)`: Reorganizes dimensions while preserving row-major element order. Returns a new owning tensor.
@@ -333,9 +342,10 @@ When compiled with OpenMP (`MINITENSOR_ENABLE_OPENMP=ON`), `matmul_parallel()` d
 | Operation | Time Complexity | Extra Space Complexity | Restrictions |
 | :--- | :---: | :---: | :--- |
 | `+`, `-`, `*` | $O(N)$ | $O(N)$ | Identical shapes required |
-| `matmul` | $O(M \times K \times N)$ | $O(M \times N)$ | Rank 2 only; inner dimensions must match |
-| `matmul_blocked` | $O(M \times K \times N)$ | $O(M \times N)$ | Rank 2 only; `block_size > 0` |
-| `matmul_parallel`| $O(\frac{M \times K \times N}{P})$ | $O(M \times N)$ | Rank 2 only; $P$ threads |
+| `matmul` | $O(B_{\text{total}} \cdot M \cdot K \cdot N)$ | $O(B_{\text{total}} \cdot M \cdot N)$ | Rank $\ge 1$; inner dimensions must match |
+| `matmul_blocked` | $O(B_{\text{total}} \cdot M \cdot K \cdot N)$ | $O(B_{\text{total}} \cdot M \cdot N)$ | Rank $\ge 1$; `block_size > 0` |
+| `matmul_parallel`| $O(\frac{B_{\text{total}} \cdot M \cdot K \cdot N}{P})$ | $O(B_{\text{total}} \cdot M \cdot N)$ | Rank $\ge 1$; $P$ threads |
+| `tensordot` | $O(N_A \cdot N_B / K)$ | $O(\text{res\_size})$ | Contracted dimension lengths must match |
 | `reshape` | $O(N)$ | $O(N)$ | Element count must match |
 | `transpose` | $O(M \times N)$ | $O(M \times N)$ | Rank 2 only |
 
@@ -560,24 +570,30 @@ MiniTensor is intentionally minimal. To maintain technical transparency, here is
 - Bounds-checked multidimensional coordinate access.
 - Value semantics (deep copy, $O(1)$ moves, RAII).
 - Element-wise addition, subtraction, and multiplication (Hadamard product).
-- 2D matrix multiplication (serial, cache-blocked, and OpenMP parallel).
+- Generalized tensor multiplication across arbitrary ranks:
+  - Vector dot product (Rank 1 x Rank 1 -> Scalar)
+  - Matrix-vector and vector-matrix products (Rank 2 x Rank 1, Rank 1 x Rank 2)
+  - 2D matrix multiplication (Rank 2 x Rank 2)
+  - Arbitrary-rank batched matrix multiplication (Rank 3, 4, 5, ..., N)
+  - Batch dimension broadcasting (e.g., 3D batch with 2D matrix)
+  - Serial, cache-blocked, and multithreaded OpenMP execution
+- General tensor contraction along arbitrary axes (`tensordot`).
 - 2D matrix transposition and copying reshape.
+- Single-header release distribution (`release/minitensor.hpp`) and release zip archive.
 - Comprehensive CMake export and install targets.
 
 ### Current Limitations (Unsupported)
 - **CPU Only:** No GPU (CUDA / ROCm / Vulkan) support.
-- **No Implicit Broadcasting:** Operands must have identical shapes.
-- **2D-Only Matrix Multiplication:** Batched higher-rank matrix multiplication (e.g., $(B \times M \times K) \times (B \times K \times N)$) is not currently supported.
-- **2D-Only Transposition:** Transposing higher-rank tensors by axis permutation is not implemented.
+- **No Implicit Element-Wise Broadcasting:** Element-wise operands must have identical shapes (matrix multiplication supports batch broadcasting).
+- **2D-Only Transposition:** Transposing higher-rank tensors by arbitrary axis permutation is not implemented (use `tensordot` for tensor contractions).
 - **No Shared Views / Slicing:** Sub-tensor slicing and non-owning views (`std::span` style) are not implemented; `reshape()` and `transpose()` return newly allocated owning copies.
 - **No Automatic Differentiation:** No autograd or computational graph engine.
 
 ### Potential Future Roadmap
 - Safe, non-owning tensor views and strided slicing.
-- Batched matrix multiplication for 3D/4D tensors.
 - Arbitrary axis permutation / multidimensional transpose.
 - Reduction operations (`sum`, `mean`, `max`, `min` along specified axes).
-- Explicit broadcasting utilities.
+- Implicit element-wise broadcasting utilities.
 
 ---
 
