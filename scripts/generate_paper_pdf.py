@@ -49,23 +49,54 @@ def string_width_courier(text: str, font_size: float) -> float:
     return len(text) * 0.6 * font_size
 
 def sanitize_pdf_text(text: str) -> str:
-    # Replace unicode symbols with PDF-standard ASCII approximations
-    replacements = {
+    # 1. Unicode character replacements
+    unicode_map = {
         '—': '--', '–': '-', '“': '"', '”': '"', '‘': "'", '’': "'",
         '×': 'x', '·': '*', '≈': '~=', '≠': '!=', '≤': '<=', '≥': '>=',
-        '→': '->', '←': '<-', '⇒': '=>', '⇔': '<=>', '∈': 'in',
-        'mathbb{R}': 'R', 'mathbb{N}': 'N', 'mathbb{Z}': 'Z',
-        'mathcal{T}': 'T', 'mathcal{A}': 'A', 'mathcal{B}': 'B', 'mathcal{C}': 'C',
-        'mathcal{I}': 'I', 'mathcal{K}': 'K', 'mathcal{M}': 'M',
-        'mathbf{A}': 'A', 'mathbf{B}': 'B', 'mathbf{C}': 'C', 'mathbf{W}': 'W',
-        'mathbf{X}': 'X', 'mathbf{Y}': 'Y', 'mathbf{v}': 'v', 'mathbf{i}': 'i',
-        'mathbf{S}': 'S', 'odot': '(x)', 'pm': '+/-', 'le': '<=', 'ge': '>=',
-        'prod': 'PROD', 'sum': 'SUM', 'infty': 'inf', 'delta': 'd', 'alpha': 'a',
-        'epsilon': 'eps', 'Omega': 'Offset', 'times': 'x', 'quad': '  ',
-        'dots': '...', 'text': '', '{': '', '}': '', '\\': '', '$': ''
+        '→': '->', '←': '<-', '⇒': '=>', '⇔': '<=>', '∈': 'in', '∇': 'grad',
+        '∂': 'd', '…': '...', '±': '+/-', '•': '*'
     }
-    for old, new in replacements.items():
-        text = text.replace(old, new)
+    for k, v in unicode_map.items():
+        text = text.replace(k, v)
+
+    # 2. Markdown links: [text](url) -> text if text == url else text (url)
+    def _link_repl(m):
+        t, u = m.group(1), m.group(2)
+        return t if t == u else f"{t} ({u})"
+    text = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', _link_repl, text)
+
+    # 3. LaTeX replacements via regex
+    text = re.sub(r'\\(?:mathbb|mathbf|mathcal|text)\{([^}]*)\}', r'\1', text)
+    text = re.sub(r'\\le\b', '<=', text)
+    text = re.sub(r'\\ge\b', '>=', text)
+    text = re.sub(r'\\times\b', 'x', text)
+    text = re.sub(r'\\cdot\b', '*', text)
+    text = re.sub(r'\\pm\b', '+/-', text)
+    text = re.sub(r'\\odot\b', '(x)', text)
+    text = re.sub(r'\\prod\b', 'PROD', text)
+    text = re.sub(r'\\sum\b', 'SUM', text)
+    text = re.sub(r'\\to\b', '->', text)
+    text = re.sub(r'\\leftarrow\b', '<-', text)
+    text = re.sub(r'\\approx\b', '~=', text)
+    text = re.sub(r'\\neq\b', '!=', text)
+    text = re.sub(r'\\in\b', 'in', text)
+    text = re.sub(r'\\alpha\b', 'alpha', text)
+    text = re.sub(r'\\beta\b', 'beta', text)
+    text = re.sub(r'\\gamma\b', 'gamma', text)
+    text = re.sub(r'\\delta\b', 'delta', text)
+    text = re.sub(r'\\epsilon\b', 'eps', text)
+    text = re.sub(r'\\nabla\b', 'grad', text)
+    text = re.sub(r'\\partial\b', 'd', text)
+    text = re.sub(r'\\infty\b', 'inf', text)
+    text = re.sub(r'\\quad\b', '  ', text)
+    text = re.sub(r'\\dots\b', '...', text)
+    text = re.sub(r'\\Omega\b', 'Offset', text)
+
+    # Clean LaTeX math delimiters $
+    text = text.replace('$', '')
+    # Strip backslashes
+    text = text.replace('\\', '')
+
     # Filter to printable ASCII
     clean_chars = []
     for c in text:
@@ -134,22 +165,22 @@ class FlowDocument:
         total_pages = len(self.pages)
         for i, page in enumerate(self.pages):
             page_num = i + 1
-            # Header (Pages 2+)
+            # Running Header (Pages 2+)
             if page_num > 1:
-                page.set_stroke_color(0.8, 0.82, 0.85)
+                page.set_stroke_color(0.80, 0.82, 0.86)
                 page.set_line_width(0.75)
                 page.draw_line(MARGIN_LEFT, PAGE_HEIGHT - 38.0, PAGE_WIDTH - MARGIN_RIGHT, PAGE_HEIGHT - 38.0)
                 page.draw_text("Design and Implementation of a Lightweight Multidimensional Tensor Library in C++",
-                               MARGIN_LEFT, PAGE_HEIGHT - 34.0, "F1", 8.0, 0.4, 0.4, 0.45)
-            # Footer (All pages)
-            page.set_stroke_color(0.8, 0.82, 0.85)
+                               MARGIN_LEFT, PAGE_HEIGHT - 34.0, "F1", 8.0, 0.40, 0.42, 0.46)
+            # Running Footer (All pages)
+            page.set_stroke_color(0.80, 0.82, 0.86)
             page.set_line_width(0.75)
             page.draw_line(MARGIN_LEFT, 42.0, PAGE_WIDTH - MARGIN_RIGHT, 42.0)
             page.draw_text("MiniTensor Technical Research Paper | Systems Engineering",
-                           MARGIN_LEFT, 30.0, "F1", 8.0, 0.45, 0.45, 0.5)
+                           MARGIN_LEFT, 30.0, "F1", 8.0, 0.42, 0.44, 0.48)
             page_str = f"Page {page_num} of {total_pages}"
             str_w = string_width_helvetica(page_str, 8.0)
-            page.draw_text(page_str, PAGE_WIDTH - MARGIN_RIGHT - str_w, 30.0, "F2", 8.0, 0.3, 0.3, 0.35)
+            page.draw_text(page_str, PAGE_WIDTH - MARGIN_RIGHT - str_w, 30.0, "F2", 8.0, 0.30, 0.32, 0.36)
 
 def wrap_text(text: str, font_size: float, max_width: float, is_code: bool = False) -> List[str]:
     text = sanitize_pdf_text(text).strip()
@@ -182,8 +213,6 @@ def render_markdown_to_pdf(md_content: str, output_pdf_path: str):
     in_code_block = False
     code_lines = []
     in_abstract = False
-    abstract_lines = []
-    in_table = False
     table_rows = []
 
     i = 0
@@ -193,29 +222,43 @@ def render_markdown_to_pdf(md_content: str, output_pdf_path: str):
         # Handle Code Blocks
         if line.startswith("```"):
             if in_code_block:
-                # End of code block: render it
                 in_code_block = False
-                font_size = 7.5
-                line_height = 10.5
-                padding = 8.0
-                block_height = len(code_lines) * line_height + 2 * padding
-                doc.check_space(block_height + 10.0)
+                font_size = 7.2
+                line_height = 10.0
+                padding = 6.0
                 
-                # Draw background box
-                doc.current_page.set_fill_color(0.96, 0.965, 0.975)
-                doc.current_page.set_stroke_color(0.85, 0.87, 0.90)
-                doc.current_page.set_line_width(0.75)
-                doc.current_page.draw_rect(MARGIN_LEFT, doc.cursor_y - block_height, USABLE_WIDTH, block_height, fill=True, stroke=True)
+                # Render code lines with page-splitting awareness
+                remaining_code = list(code_lines)
+                while remaining_code:
+                    avail_height = doc.cursor_y - MARGIN_BOTTOM - 16.0
+                    lines_fit = int((avail_height - 2 * padding) / line_height)
+                    if lines_fit < 3 and avail_height < USABLE_HEIGHT - 40.0:
+                        doc.new_page()
+                        avail_height = doc.cursor_y - MARGIN_BOTTOM - 16.0
+                        lines_fit = int((avail_height - 2 * padding) / line_height)
+                    
+                    chunk = remaining_code[:max(1, lines_fit)]
+                    remaining_code = remaining_code[len(chunk):]
+                    chunk_height = len(chunk) * line_height + 2 * padding
+                    
+                    # Background box
+                    doc.current_page.set_fill_color(0.965, 0.970, 0.978)
+                    doc.current_page.set_stroke_color(0.84, 0.86, 0.89)
+                    doc.current_page.set_line_width(0.6)
+                    doc.current_page.draw_rect(MARGIN_LEFT, doc.cursor_y - chunk_height, USABLE_WIDTH, chunk_height, fill=True, stroke=True)
+                    
+                    y_text = doc.cursor_y - padding - font_size
+                    for cl in chunk:
+                        cl_sanitized = sanitize_pdf_text(cl)
+                        if len(cl_sanitized) > 105:
+                            cl_sanitized = cl_sanitized[:102] + "..."
+                        doc.current_page.draw_text(cl_sanitized, MARGIN_LEFT + 8.0, y_text, "F4", font_size, 0.15, 0.20, 0.25)
+                        y_text -= line_height
+                    
+                    doc.cursor_y -= chunk_height + 8.0
+                    if remaining_code:
+                        doc.new_page()
                 
-                # Render code text
-                y_text = doc.cursor_y - padding - font_size
-                for cl in code_lines:
-                    cl_sanitized = sanitize_pdf_text(cl)
-                    if len(cl_sanitized) > 95:
-                        cl_sanitized = cl_sanitized[:92] + "..."
-                    doc.current_page.draw_text(cl_sanitized, MARGIN_LEFT + 8.0, y_text, "F4", font_size, 0.15, 0.20, 0.25)
-                    y_text -= line_height
-                doc.cursor_y -= block_height + 10.0
                 code_lines = []
             else:
                 in_code_block = True
@@ -230,57 +273,53 @@ def render_markdown_to_pdf(md_content: str, output_pdf_path: str):
 
         # Handle Tables
         if line.startswith("|") and line.endswith("|"):
-            # Check if this is a separator line like |---|---|
             if set(line.replace("|", "").replace(" ", "").replace(":", "")) == {"-"}:
                 i += 1
                 continue
             cells = [c.strip() for c in line.split("|")[1:-1]]
             table_rows.append(cells)
-            # Look ahead to see if table continues
             if i + 1 < len(lines) and lines[i + 1].strip().startswith("|"):
                 i += 1
                 continue
             else:
-                # End of table: render table
                 num_cols = max(len(r) for r in table_rows)
                 col_width = USABLE_WIDTH / num_cols
-                row_height = 18.0
+                row_height = 17.0
                 total_table_height = len(table_rows) * row_height
-                doc.check_space(total_table_height + 14.0)
+                
+                if doc.cursor_y - total_table_height < MARGIN_BOTTOM:
+                    if total_table_height <= USABLE_HEIGHT:
+                        doc.new_page()
 
                 table_top = doc.cursor_y
                 for r_idx, row in enumerate(table_rows):
                     y_row = table_top - (r_idx + 1) * row_height
                     is_header = (r_idx == 0)
-                    # Background
                     if is_header:
                         doc.current_page.set_fill_color(0.18, 0.28, 0.45)
                         doc.current_page.draw_rect(MARGIN_LEFT, y_row, USABLE_WIDTH, row_height, fill=True, stroke=False)
                     elif r_idx % 2 == 1:
-                        doc.current_page.set_fill_color(0.97, 0.98, 0.99)
+                        doc.current_page.set_fill_color(0.965, 0.975, 0.985)
                         doc.current_page.draw_rect(MARGIN_LEFT, y_row, USABLE_WIDTH, row_height, fill=True, stroke=False)
 
-                    # Cell Borders
                     doc.current_page.set_stroke_color(0.82, 0.85, 0.88)
                     doc.current_page.set_line_width(0.5)
                     doc.current_page.draw_rect(MARGIN_LEFT, y_row, USABLE_WIDTH, row_height, fill=False, stroke=True)
 
-                    # Text
                     for c_idx, cell in enumerate(row):
                         cell_clean = sanitize_pdf_text(cell).replace("**", "")
                         c_x = MARGIN_LEFT + c_idx * col_width + 4.0
-                        c_y = y_row + 5.0
+                        c_y = y_row + 4.5
                         font = "F2" if is_header else "F1"
                         r_col = 1.0 if is_header else 0.15
                         g_col = 1.0 if is_header else 0.15
                         b_col = 1.0 if is_header else 0.20
-                        # Truncate if too long
-                        max_chars = int(col_width / 5.2)
+                        max_chars = int(col_width / 5.0)
                         if len(cell_clean) > max_chars:
                             cell_clean = cell_clean[:max_chars - 2] + ".."
-                        doc.current_page.draw_text(cell_clean, c_x, c_y, font, 7.5, r_col, g_col, b_col)
+                        doc.current_page.draw_text(cell_clean, c_x, c_y, font, 7.2, r_col, g_col, b_col)
 
-                doc.cursor_y -= total_table_height + 12.0
+                doc.cursor_y -= total_table_height + 10.0
                 table_rows = []
                 i += 1
                 continue
@@ -289,71 +328,73 @@ def render_markdown_to_pdf(md_content: str, output_pdf_path: str):
         if line.startswith("# "):
             title_text = line[2:].strip()
             doc.check_space(80.0)
-            doc.cursor_y -= 10.0
-            doc.current_page.draw_text(title_text, MARGIN_LEFT, doc.cursor_y, "F2", 18.0, 0.10, 0.18, 0.35)
-            doc.cursor_y -= 14.0
+            doc.cursor_y -= 8.0
+            doc.current_page.draw_text(title_text, MARGIN_LEFT, doc.cursor_y, "F2", 17.0, 0.10, 0.18, 0.35)
+            doc.cursor_y -= 12.0
             doc.current_page.set_stroke_color(0.18, 0.28, 0.45)
             doc.current_page.set_line_width(2.0)
-            doc.current_page.draw_line(MARGIN_LEFT, doc.cursor_y, MARGIN_LEFT + 120.0, doc.cursor_y)
-            doc.cursor_y -= 16.0
+            doc.current_page.draw_line(MARGIN_LEFT, doc.cursor_y, MARGIN_LEFT + 140.0, doc.cursor_y)
+            doc.cursor_y -= 14.0
             i += 1
             continue
 
         if line.startswith("## "):
             h2_text = line[3:].strip()
-            doc.check_space(45.0)
-            doc.cursor_y -= 14.0
-            doc.current_page.draw_text(h2_text, MARGIN_LEFT, doc.cursor_y, "F2", 12.5, 0.12, 0.22, 0.40)
-            doc.cursor_y -= 6.0
+            doc.check_space(42.0)
+            doc.cursor_y -= 12.0
+            doc.current_page.draw_text(h2_text, MARGIN_LEFT, doc.cursor_y, "F2", 12.0, 0.12, 0.22, 0.40)
+            doc.cursor_y -= 5.0
             doc.current_page.set_stroke_color(0.85, 0.88, 0.92)
             doc.current_page.set_line_width(0.75)
             doc.current_page.draw_line(MARGIN_LEFT, doc.cursor_y, MARGIN_LEFT + USABLE_WIDTH, doc.cursor_y)
-            doc.cursor_y -= 10.0
+            doc.cursor_y -= 9.0
             i += 1
             continue
 
         if line.startswith("### "):
             h3_text = line[4:].strip()
-            doc.check_space(30.0)
+            doc.check_space(28.0)
+            doc.cursor_y -= 8.0
+            doc.current_page.draw_text(h3_text, MARGIN_LEFT, doc.cursor_y, "F2", 10.0, 0.18, 0.28, 0.45)
             doc.cursor_y -= 10.0
-            doc.current_page.draw_text(h3_text, MARGIN_LEFT, doc.cursor_y, "F2", 10.5, 0.18, 0.28, 0.45)
-            doc.cursor_y -= 12.0
             i += 1
             continue
 
         if line.startswith("#### "):
             h4_text = line[5:].strip()
-            doc.check_space(25.0)
-            doc.cursor_y -= 8.0
-            doc.current_page.draw_text(h4_text, MARGIN_LEFT, doc.cursor_y, "F2", 9.5, 0.25, 0.30, 0.38)
-            doc.cursor_y -= 11.0
+            doc.check_space(24.0)
+            doc.cursor_y -= 6.0
+            doc.current_page.draw_text(h4_text, MARGIN_LEFT, doc.cursor_y, "F2", 9.2, 0.25, 0.30, 0.38)
+            doc.cursor_y -= 9.0
             i += 1
             continue
 
-        # Handle Metadata lines (Author, Date, etc.)
-        if line.startswith("**Author:**") or line.startswith("**Affiliation:**") or line.startswith("**Date:**") or line.startswith("**Document Type:**"):
-            doc.check_space(16.0)
+        # Handle Metadata lines
+        if any(line.startswith(prefix) for prefix in [
+            "**Author:**", "**Affiliation:**", "**Repository:**",
+            "**Date:**", "**Document Type:**", "**Version:**"
+        ]):
+            doc.check_space(15.0)
             clean_line = sanitize_pdf_text(line).replace("**", "")
-            doc.current_page.draw_text(clean_line, MARGIN_LEFT, doc.cursor_y, "F1", 9.0, 0.35, 0.38, 0.42)
-            doc.cursor_y -= 13.0
+            doc.current_page.draw_text(clean_line, MARGIN_LEFT, doc.cursor_y, "F1", 8.8, 0.30, 0.34, 0.40)
+            doc.cursor_y -= 12.5
             i += 1
             continue
 
         if line == "---":
-            doc.check_space(14.0)
-            doc.cursor_y -= 4.0
+            doc.check_space(12.0)
+            doc.cursor_y -= 3.0
             doc.current_page.set_stroke_color(0.85, 0.88, 0.92)
             doc.current_page.set_line_width(0.75)
             doc.current_page.draw_line(MARGIN_LEFT, doc.cursor_y, MARGIN_LEFT + USABLE_WIDTH, doc.cursor_y)
-            doc.cursor_y -= 12.0
+            doc.cursor_y -= 10.0
             i += 1
             continue
 
-        # Handle Abstract Heading & Content
+        # Handle Abstract Block
         if line.strip() == "## Abstract":
-            doc.check_space(120.0)
-            doc.cursor_y -= 8.0
-            # Read subsequent lines until next heading or divider
+            doc.check_space(110.0)
+            doc.cursor_y -= 6.0
             abstract_text = []
             i += 1
             while i < len(lines) and not lines[i].startswith("---") and not lines[i].startswith("## "):
@@ -361,79 +402,74 @@ def render_markdown_to_pdf(md_content: str, output_pdf_path: str):
                     abstract_text.append(lines[i].strip())
                 i += 1
             full_abs = " ".join(abstract_text)
-            wrapped_abs = wrap_text(full_abs, 8.5, USABLE_WIDTH - 24.0)
-            box_h = len(wrapped_abs) * 12.0 + 34.0
+            wrapped_abs = wrap_text(full_abs, 8.4, USABLE_WIDTH - 24.0)
+            box_h = len(wrapped_abs) * 11.5 + 30.0
 
-            # Draw Callout Box for Abstract
-            doc.current_page.set_fill_color(0.96, 0.97, 0.99)
+            doc.current_page.set_fill_color(0.965, 0.975, 0.99)
             doc.current_page.set_stroke_color(0.20, 0.35, 0.60)
             doc.current_page.set_line_width(1.0)
             doc.current_page.draw_rect(MARGIN_LEFT, doc.cursor_y - box_h, USABLE_WIDTH, box_h, fill=True, stroke=True)
             
-            # Abstract Title
-            doc.current_page.draw_text("ABSTRACT", MARGIN_LEFT + 12.0, doc.cursor_y - 18.0, "F2", 9.5, 0.15, 0.25, 0.45)
-            
-            # Abstract Body
-            y_abs = doc.cursor_y - 32.0
+            doc.current_page.draw_text("ABSTRACT", MARGIN_LEFT + 12.0, doc.cursor_y - 16.0, "F2", 9.0, 0.15, 0.25, 0.45)
+            y_abs = doc.cursor_y - 28.0
             for al in wrapped_abs:
-                doc.current_page.draw_text(al, MARGIN_LEFT + 12.0, y_abs, "F3", 8.5, 0.20, 0.22, 0.25)
-                y_abs -= 12.0
-            doc.cursor_y -= box_h + 14.0
+                doc.current_page.draw_text(al, MARGIN_LEFT + 12.0, y_abs, "F3", 8.4, 0.20, 0.22, 0.25)
+                y_abs -= 11.5
+            doc.cursor_y -= box_h + 12.0
             continue
 
-        # Handle Math / Display Equation Blocks ($$ ... $$)
+        # Handle Display Equations ($$ ... $$)
         if line.startswith("$$") and line.endswith("$$") and len(line) > 4:
             eq_text = line[2:-2].strip()
             eq_clean = sanitize_pdf_text(eq_text)
-            doc.check_space(28.0)
-            doc.cursor_y -= 6.0
-            # Indented math display
-            doc.current_page.draw_text(eq_clean, MARGIN_LEFT + 36.0, doc.cursor_y, "F7", 9.5, 0.10, 0.15, 0.30)
-            doc.cursor_y -= 16.0
+            doc.check_space(26.0)
+            doc.cursor_y -= 5.0
+            doc.current_page.draw_text(eq_clean, MARGIN_LEFT + 32.0, doc.cursor_y, "F7", 9.2, 0.10, 0.15, 0.30)
+            doc.cursor_y -= 14.0
             i += 1
             continue
 
-        # Handle List items
+        # Handle List Items
         if line.strip().startswith("- ") or line.strip().startswith("* "):
             bullet_text = line.strip()[2:]
-            wrapped = wrap_text(bullet_text, 8.8, USABLE_WIDTH - 18.0)
-            doc.check_space(len(wrapped) * 12.5 + 4.0)
+            wrapped = wrap_text(bullet_text, 8.5, USABLE_WIDTH - 18.0)
+            doc.check_space(len(wrapped) * 12.0 + 3.0)
             for l_idx, wl in enumerate(wrapped):
                 if l_idx == 0:
-                    doc.current_page.draw_text("*", MARGIN_LEFT + 4.0, doc.cursor_y, "F2", 9.0, 0.25, 0.35, 0.50)
-                doc.current_page.draw_text(wl, MARGIN_LEFT + 14.0, doc.cursor_y, "F1", 8.8, 0.18, 0.18, 0.20)
-                doc.cursor_y -= 12.5
+                    doc.current_page.draw_text("*", MARGIN_LEFT + 4.0, doc.cursor_y, "F2", 8.8, 0.25, 0.35, 0.50)
+                doc.current_page.draw_text(wl, MARGIN_LEFT + 14.0, doc.cursor_y, "F1", 8.5, 0.18, 0.18, 0.20)
+                doc.cursor_y -= 12.0
             i += 1
             continue
 
-        # Numbered list items: e.g. 1. , 2.
+        # Numbered list items
         m_num = re.match(r"^(\d+\.)\s+(.*)", line.strip())
         if m_num:
             prefix = m_num.group(1)
             rest = m_num.group(2)
-            wrapped = wrap_text(rest, 8.8, USABLE_WIDTH - 24.0)
-            doc.check_space(len(wrapped) * 12.5 + 4.0)
+            wrapped = wrap_text(rest, 8.5, USABLE_WIDTH - 24.0)
+            doc.check_space(len(wrapped) * 12.0 + 3.0)
             for l_idx, wl in enumerate(wrapped):
                 if l_idx == 0:
-                    doc.current_page.draw_text(prefix, MARGIN_LEFT + 2.0, doc.cursor_y, "F2", 8.8, 0.20, 0.25, 0.35)
-                doc.current_page.draw_text(wl, MARGIN_LEFT + 20.0, doc.cursor_y, "F1", 8.8, 0.18, 0.18, 0.20)
-                doc.cursor_y -= 12.5
+                    doc.current_page.draw_text(prefix, MARGIN_LEFT + 2.0, doc.cursor_y, "F2", 8.5, 0.20, 0.25, 0.35)
+                doc.current_page.draw_text(wl, MARGIN_LEFT + 20.0, doc.cursor_y, "F1", 8.5, 0.18, 0.18, 0.20)
+                doc.cursor_y -= 12.0
             i += 1
             continue
 
         # Blank Line
         if not line.strip():
-            doc.cursor_y -= 6.0
+            doc.cursor_y -= 5.0
             i += 1
             continue
 
         # Standard Paragraph
-        wrapped_para = wrap_text(line, 8.8, USABLE_WIDTH)
-        doc.check_space(len(wrapped_para) * 12.5 + 4.0)
+        wrapped_para = wrap_text(line, 8.5, USABLE_WIDTH)
+        doc.check_space(len(wrapped_para) * 12.0 + 3.0)
         for pl in wrapped_para:
-            doc.current_page.draw_text(pl, MARGIN_LEFT, doc.cursor_y, "F1", 8.8, 0.15, 0.15, 0.18)
-            doc.cursor_y -= 12.5
-        doc.cursor_y -= 3.0
+            doc.current_page.draw_text(pl, MARGIN_LEFT, doc.cursor_y, "F1", 8.5, 0.15, 0.15, 0.18)
+            doc.cursor_y -= 12.0
+        doc.cursor_y -= 2.5
         i += 1
 
     # Decorate all pages with headers, footers, page counts
@@ -446,13 +482,12 @@ def write_pdf_file(pages: List[PDFCanvas], output_path: str):
     objects: List[bytes] = []
     offsets: List[int] = []
 
-    # Helper to add an object
     def add_object(content: bytes) -> int:
         obj_num = len(objects) + 1
         objects.append(content)
         return obj_num
 
-    # Fonts: F1 (Helvetica), F2 (Helvetica-Bold), F3 (Helvetica-Oblique), F4 (Courier), F7 (Times-Bold)
+    # Fonts
     font_f1 = b"<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>"
     font_f2 = b"<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>"
     font_f3 = b"<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Oblique /Encoding /WinAnsiEncoding >>"
@@ -465,27 +500,21 @@ def write_pdf_file(pages: List[PDFCanvas], output_path: str):
     id_f4 = add_object(font_f4)
     id_f7 = add_object(font_f7)
 
-    # Resources dictionary
     resources = (
         f"<< /Font << /F1 {id_f1} 0 R /F2 {id_f2} 0 R /F3 {id_f3} 0 R /F4 {id_f4} 0 R /F7 {id_f7} 0 R >> >>"
     ).encode('latin-1')
     id_resources = add_object(resources)
 
-    # Page objects and Contents
     page_ids = []
-    # Reserve page object IDs
     start_page_id = len(objects) + 1
     num_pages = len(pages)
     
-    # We will generate contents first, then pages, then pages root, then catalog
-    # Let's placeholder page IDs
     for p_idx in range(num_pages):
         page_ids.append(start_page_id + p_idx * 2)
 
     pages_root_id = start_page_id + num_pages * 2
 
     for p_idx, page in enumerate(pages):
-        # 1. Content stream
         raw_stream = "\n".join(page.commands).encode('latin-1')
         compressed_stream = zlib.compress(raw_stream)
         stream_obj = (
@@ -495,23 +524,19 @@ def write_pdf_file(pages: List[PDFCanvas], output_path: str):
         id_page = add_object(b"") # Placeholder
         id_content = add_object(stream_obj)
         
-        # Now fill page object
         page_dict = (
             f"<< /Type /Page /Parent {pages_root_id} 0 R /MediaBox [0 0 {PAGE_WIDTH} {PAGE_HEIGHT}] "
             f"/Resources {id_resources} 0 R /Contents {id_content} 0 R >>"
         ).encode('latin-1')
         objects[id_page - 1] = page_dict
 
-    # Pages root
     kids_str = " ".join(f"{pid} 0 R" for pid in page_ids)
     pages_root = f"<< /Type /Pages /Kids [ {kids_str} ] /Count {num_pages} >>".encode('latin-1')
     id_pages_root = add_object(pages_root)
 
-    # Catalog
     catalog = f"<< /Type /Catalog /Pages {id_pages_root} 0 R >>".encode('latin-1')
     id_catalog = add_object(catalog)
 
-    # Assemble complete PDF byte buffer
     pdf_bytes = bytearray()
     pdf_bytes.extend(b"%PDF-1.4\n%\xe2\xe3\xcf\xd3\n")
 
@@ -524,13 +549,11 @@ def write_pdf_file(pages: List[PDFCanvas], output_path: str):
         pdf_bytes.extend(obj)
         pdf_bytes.extend(b"\nendobj\n")
 
-    # XRef table
     xref_start = len(pdf_bytes)
     pdf_bytes.extend(f"xref\n0 {len(objects) + 1}\n0000000000 65535 f \n".encode('latin-1'))
     for off in xref_offsets:
         pdf_bytes.extend(f"{off:010d} 00000 n \n".encode('latin-1'))
 
-    # Trailer
     pdf_bytes.extend(
         f"trailer\n<< /Size {len(objects) + 1} /Root {id_catalog} 0 R >>\nstartxref\n{xref_start}\n%%EOF\n".encode('latin-1')
     )
@@ -550,4 +573,3 @@ if __name__ == "__main__":
     with open(paper_md_path, "r", encoding="utf-8") as f:
         content = f.read()
     render_markdown_to_pdf(content, output_pdf)
-

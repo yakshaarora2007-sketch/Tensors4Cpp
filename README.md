@@ -22,8 +22,8 @@ This `README.md` provides a comprehensive overview of the library. For in-depth 
 | 🏛️ [**Repository Architecture**](docs/architecture.md) | Project directory structure and CMake setup. | Target architecture, build options, package export, linking. |
 | ⚡ [**Performance & Optimization**](docs/performance.md) | Hardware co-design and empirical benchmarks. | Cache lines, memory bus saturation, AVX2, real benchmark runs. |
 | 🧪 [**Testing & Reliability**](docs/testing.md) | Verification suites and edge-case handling. | Dual testing modes (GoogleTest vs fallback), sanitizers, error paths. |
-| 📄 [**Technical Research Paper (Markdown)**](docs/mini_tensor_library_paper.md) | Formal academic systems research paper. | Theoretical background, architecture, IEEE references, trade-offs. |
-| 📑 [**Technical Research Paper (PDF)**](docs/mini_tensor_library_paper.pdf) | Publication-formatted 16-page PDF document. | Complete paper formatted with equations, tables, and typography. |
+| 📄 [**Technical Research Paper (Markdown)**](docs/mini_tensor_library_paper.md) | Formal academic systems research paper. | Theoretical background, architecture, IEEE references, complete user manual, and API reference. |
+| 📑 [**Technical Research Paper (PDF)**](docs/mini_tensor_library_paper.pdf) | Publication-formatted 21-page PDF document. | Complete paper formatted with equations, tables, benchmarks, user guide, and typography. |
 
 ---
 

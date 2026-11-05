@@ -1,6 +1,11 @@
 # Design and Implementation of a Lightweight Multidimensional Tensor Library in C++
 
-**Document Type:** Technical Research Paper  
+**Author:** Yaksha Arora  
+**Affiliation:** Independent Research / Tensors4Cpp Project  
+**Repository:** [https://github.com/yakshaarora2007-sketch/Tensors4Cpp](https://github.com/yakshaarora2007-sketch/Tensors4Cpp)  
+**Date:** March 2026  
+**Document Type:** Technical Research Paper & System Specification  
+**Version:** 1.1.0 (Arbitrary-Rank Support)  
 
 ---
 
@@ -8,11 +13,11 @@
 
 Multidimensional arrays, or tensors, form the computational bedrock of contemporary numerical analysis, scientific simulations, computer vision, and machine learning systems. While high-level environments provide rich array abstractions, systems-level C++ software frequently struggles with the dichotomy between heavy, complex third-party frameworks and fragile, cache-inefficient nested pointer structures such as `std::vector<std::vector<T>>`. 
 
-This paper presents the design, mathematical foundations, architectural implementation, and empirical evaluation of **MiniTensor**, an open-source, dependency-free, header-only C++20 library for arbitrary-rank multidimensional tensors. MiniTensor couples an owning, contiguous memory architecture with dynamic metadata separation, row-major stride indexing, checked dimensional arithmetic, and cache-conscious linear algebra kernels. 
+This paper presents the design, mathematical foundations, architectural implementation, empirical evaluation, and complete user documentation of **MiniTensor**, an open-source, dependency-free, header-only C++20 library for arbitrary-rank multidimensional tensors. MiniTensor couples an owning, contiguous memory architecture with dynamic metadata separation, row-major stride indexing, checked dimensional arithmetic, and cache-conscious linear algebra kernels. 
 
-We discuss the design decisions underpinning its resource acquisition is initialization (RAII) memory model, bounds-checked offset engine, integer overflow safeguards, and cache-tiled and OpenMP-accelerated matrix multiplication implementations. 
+We discuss the design decisions underpinning its resource acquisition is initialization (RAII) memory model, bounds-checked offset engine, integer overflow safeguards, and cache-tiled and OpenMP-accelerated matrix and batched tensor multiplication implementations. In version 1.1.0, MiniTensor generalized tensor multiplication across arbitrary ranks, including 1D vector dot products, 2D matrix multiplication, higher-rank batched contractions, batch broadcasting, and arbitrary-axis tensor contractions (`tensordot`).
 
-Experimental evaluation conducted on modern x86-64 hardware demonstrates that MiniTensor's contiguous storage and loop reordering achieve up to a $5.49\times$ parallel speedup over baseline execution on multi-core workloads, while maintaining strict mathematical precision, memory safety, and zero external dependencies.
+Experimental evaluation conducted on modern x86-64 hardware demonstrates that MiniTensor's contiguous storage and loop reordering achieve up to a $5.49\times$ parallel speedup over baseline execution on multi-core workloads, while maintaining strict mathematical precision, memory safety, and zero external dependencies. The paper concludes with an extensive practical user manual and API reference guide for seamless adoption.
 
 ---
 
@@ -32,7 +37,7 @@ Experimental evaluation conducted on modern x86-64 hardware demonstrates that Mi
    - 3.4 [NumPy as an Architectural Reference](#34-numpy-as-an-architectural-reference)
    - 3.5 [MiniTensor's Position in the Design Space](#35-minitensors-position-in-the-design-space)
 4. [System Architecture and Design](#4-system-architecture-and-design)
-   - 4.1 [Structural Modularity](#41-structural-modularity)
+   - 4.1 [Structural Modularity and Header Distribution](#41-structural-modularity-and-header-distribution)
    - 4.2 [The `Tensor<T>` Class Template](#42-the-tensort-class-template)
    - 4.3 [Metadata and Storage Separation](#43-metadata-and-storage-separation)
    - 4.4 [Memory Ownership Model](#44-memory-ownership-model)
@@ -42,7 +47,7 @@ Experimental evaluation conducted on modern x86-64 hardware demonstrates that Mi
    - 5.2 [Stride Computation and Empty Tensor Handling](#52-stride-computation-and-empty-tensor-handling)
    - 5.3 [Multidimensional Indexing and Coordinate Validation](#53-multidimensional-indexing-and-coordinate-validation)
    - 5.4 [Element-Wise Operations Engine](#54-element-wise-operations-engine)
-   - 5.5 [Matrix Multiplication Kernels: Serial, Blocked, and Parallel](#55-matrix-multiplication-kernels-serial-blocked-and-parallel)
+   - 5.5 [Arbitrary-Rank Multiplication Kernels: Serial, Blocked, and Parallel](#55-arbitrary-rank-multiplication-kernels-serial-blocked-and-parallel)
    - 5.6 [Materialized Reshaping and Transposition](#56-materialized-reshaping-and-transposition)
    - 5.7 [Algorithmic Complexity Summary](#57-algorithmic-complexity-summary)
 6. [Memory Management and Hardware Co-Design](#6-memory-management-and-hardware-co-design)
@@ -65,6 +70,12 @@ Experimental evaluation conducted on modern x86-64 hardware demonstrates that Mi
    - 9.2 [Proposed Research Directions](#92-proposed-research-directions)
 10. [Conclusion](#10-conclusion)
 11. [References](#11-references)
+12. [Comprehensive User Documentation and Integration Guide](#12-comprehensive-user-documentation-and-integration-guide)
+   - 12.1 [Distribution and Download Options](#121-distribution-and-download-options)
+   - 12.2 [Integration and Build Setup](#122-integration-and-build-setup)
+   - 12.3 [Complete Multi-Rank Code Walkthrough](#123-complete-multi-rank-code-walkthrough)
+   - 12.4 [Compiler Commands and Flags](#124-compiler-commands-and-flags)
+   - 12.5 [API Reference and Method Cheat Sheet](#125-api-reference-and-method-cheat-sheet)
 
 ---
 
@@ -163,9 +174,20 @@ A foundational principle in tensor software design is the strict mathematical di
    $$(\mathcal{A} \pm \mathcal{B})[i_0, \dots, i_{K-1}] = \mathcal{A}[i_0, \dots, i_{K-1}] \pm \mathcal{B}[i_0, \dots, i_{K-1}]$$
    $$(\mathcal{A} \odot \mathcal{B})[i_0, \dots, i_{K-1}] = \mathcal{A}[i_0, \dots, i_{K-1}] \times \mathcal{B}[i_0, \dots, i_{K-1}]$$
 
-2. **Matrix Multiplication (Linear Contraction):**
-   Matrix multiplication is defined exclusively for rank-2 tensors. Given $\mathbf{A} \in \mathbb{R}^{M \times K}$ and $\mathbf{B} \in \mathbb{R}^{K \times N}$, the product $\mathbf{C} = \mathbf{A}\mathbf{B} \in \mathbb{R}^{M \times N}$ is evaluated by contracting along the inner dimension $K$:
-   $$C_{i,j} = \sum_{k=0}^{K-1} A_{i,k} \cdot B_{k,j}$$
+2. **Multidimensional Linear Contraction and Multiplication:**
+   Rather than restricting multiplication to $2$-dimensional matrices, MiniTensor implements generalized tensor multiplication across arbitrary ranks ($K \ge 1$):
+   - **Rank 1 $\times$ Rank 1 (Vector Dot Product):** Contracts two vectors $\mathbf{u}, \mathbf{v} \in \mathbb{R}^K$ into a Rank 0 scalar:
+     $$\mathbf{u} \cdot \mathbf{v} = \sum_{k=0}^{K-1} u_k \cdot v_k \in \mathbb{R}$$
+   - **Rank 2 $\times$ Rank 1 (Matrix-Vector Contraction):** Contracts $\mathbf{A} \in \mathbb{R}^{M \times K}$ with $\mathbf{v} \in \mathbb{R}^K$ producing $\mathbf{y} \in \mathbb{R}^M$:
+     $$y_i = \sum_{k=0}^{K-1} A_{i,k} \cdot v_k$$
+   - **Rank 1 $\times$ Rank 2 (Vector-Matrix Contraction):** Contracts $\mathbf{u} \in \mathbb{R}^K$ with $\mathbf{B} \in \mathbb{R}^{K \times N}$ producing $\mathbf{y} \in \mathbb{R}^N$:
+     $$y_j = \sum_{k=0}^{K-1} u_k \cdot B_{k,j}$$
+   - **Rank 2 $\times$ Rank 2 (Standard Matrix Multiplication):** Contracts inner dimension $K$ across $M \times K$ and $K \times N$ matrices:
+     $$C_{i,j} = \sum_{k=0}^{K-1} A_{i,k} \cdot B_{k,j}$$
+   - **Rank $\ge 3$ (Batched Matrix Multiplication):** For tensors sharing arbitrary leading batch dimensions $(B_0, \dots, B_{p-1})$, contractions execute independently across each slice:
+     $$\mathcal{C}_{b_0, \dots, b_{p-1}, i, j} = \sum_{k=0}^{K-1} \mathcal{A}_{b_0, \dots, b_{p-1}, i, k} \cdot \mathcal{B}_{b_0, \dots, b_{p-1}, k, j}$$
+   - **Batch Broadcasting:** When a batched tensor $(B_0, \dots, B_{p-1}, M, K)$ is multiplied with a unbatched matrix $(K, N)$, the matrix is broadcast across all batch slices yielding $(B_0, \dots, B_{p-1}, M, N)$.
+   - **Arbitrary-Axis Contraction (`tensordot`):** Contracts arbitrary axes between two general tensors by summing products over specified axis dimensions, matching the semantics of general Einstein tensor summation.
 
 ### 2.5 Geometric Transformations: Reshape and Transposition
 
@@ -235,23 +257,30 @@ MiniTensor occupies a distinct niche in the design space:
 
 ## 4. System Architecture and Design
 
-### 4.1 Structural Modularity
+### 4.1 Structural Modularity and Header Distribution
 
-MiniTensor is organized into a modular header hierarchy under `include/minitensor/`:
+MiniTensor is architected with dual distribution channels: a modular multi-header architecture for deep integration and a unified single-header file for rapid adoption:
 
 ```text
-[ User Application ]
-         |
-         v
-[ minitensor/minitensor.hpp ]  (Master Umbrella Header)
-    |          |            |          |
-    v          v            v          v
-[tensor.hpp] [indexing.hpp] [linalg.hpp] [operations.hpp]
+               [ User Application ]
+                        |
+       +----------------+----------------+
+       |                                 |
+       v                                 v
+[ minitensor.hpp ]             [ minitensor/minitensor.hpp ]
+(Single Standalone Header)     (Master Umbrella Header)
+                                    |     |     |     |
+                                    v     v     v     v
+                              [tensor] [idx] [linalg] [ops]
 ```
 
-- `minitensor.hpp`: Umbrella header including all submodules.
-- `tensor.hpp`: Core definition of the `Tensor<T>` class template.
-- `indexing.hpp`, `linalg.hpp`, `operations.hpp`: Modular domain headers facilitating forward compatibility and logical decoupling.
+- **Standalone Single Header (`release/minitensor.hpp`):** Complete, self-contained single-header file (~30 KB). Zero external dependencies, drop-in ready for fast compilation.
+- **Master Umbrella Header (`include/minitensor/minitensor.hpp`):** Aggregates all modular headers.
+- **Modular Component Headers:**
+  - `tensor.hpp`: Core definition of the `Tensor<T>` class template.
+  - `indexing.hpp`: Stride mathematics, dimensional offsets, and bounds-checking primitives.
+  - `linalg.hpp`: Arbitrary-rank tensor multiplication (`matmul`, `matmul_blocked`, `matmul_parallel`) and contraction routines (`tensordot`).
+  - `operations.hpp`: Free algebraic functions and element-wise utilities.
 
 ### 4.2 The `Tensor<T>` Class Template
 
@@ -488,18 +517,22 @@ for (std::ptrdiff_t b = 0; b < static_cast<std::ptrdiff_t>(plan.total_batches); 
 
 ### 5.7 Algorithmic Complexity Summary
 
-| Operation | Mathematical Form | Time Complexity | Extra Space Complexity |
-| :--- | :--- | :---: | :---: |
-| **Tensor Addition** | $\mathcal{A} + \mathcal{B}$ | $O(N)$ | $O(N)$ |
-| **Tensor Subtraction** | $\mathcal{A} - \mathcal{B}$ | $O(N)$ | $O(N)$ |
-| **Hadamard Multiplication** | $\mathcal{A} \odot \mathcal{B}$ | $O(N)$ | $O(N)$ |
-| **Matrix Multiplication** | $\mathbf{A}_{M \times K} \times \mathbf{B}_{K \times N}$ | $O(M \cdot K \cdot N)$ | $O(M \cdot N)$ |
-| **Blocked Matrix Mul** | $\mathbf{A}_{M \times K} \times \mathbf{B}_{K \times N}$ | $O(M \cdot K \cdot N)$ | $O(M \cdot N)$ |
-| **Parallel Matrix Mul** | $\mathbf{A}_{M \times K} \times \mathbf{B}_{K \times N}$ | $O(\frac{M \cdot K \cdot N}{P})^*$ | $O(M \cdot N)$ |
-| **Reshape** | $\mathcal{A} \to \mathcal{A}'$ | $O(N)$ | $O(N)$ |
-| **Matrix Transpose** | $\mathbf{A} \to \mathbf{A}^T$ | $O(M \cdot N)$ | $O(M \cdot N)$ |
+| Operation | Mathematical Form | Operands / Rank | Time Complexity | Extra Space Complexity |
+| :--- | :--- | :---: | :---: | :---: |
+| **Tensor Addition** | $\mathcal{A} + \mathcal{B}$ | Rank $K \ge 0$ | $O(N)$ | $O(N)$ |
+| **Tensor Subtraction** | $\mathcal{A} - \mathcal{B}$ | Rank $K \ge 0$ | $O(N)$ | $O(N)$ |
+| **Hadamard Multiplication** | $\mathcal{A} \odot \mathcal{B}$ | Rank $K \ge 0$ | $O(N)$ | $O(N)$ |
+| **Vector Dot Product** | $\mathbf{u} \cdot \mathbf{v}$ | Rank 1 $\times$ Rank 1 | $O(K)$ | $O(1)$ |
+| **Matrix-Vector Contraction** | $\mathbf{A} \mathbf{v}$ | Rank 2 $\times$ Rank 1 | $O(M \cdot K)$ | $O(M)$ |
+| **Matrix Multiplication** | $\mathbf{A} \mathbf{B}$ | Rank 2 $\times$ Rank 2 | $O(M \cdot K \cdot N)$ | $O(M \cdot N)$ |
+| **Batched Matrix Mul** | $\mathcal{A} \times \mathcal{B}$ | Rank $\ge 3$ ($B$ slices) | $O(B \cdot M \cdot K \cdot N)$ | $O(B \cdot M \cdot N)$ |
+| **Blocked Matrix Mul** | $\mathcal{A} \times \mathcal{B}$ | Rank $\ge 2$ ($B$ slices) | $O(B \cdot M \cdot K \cdot N)$ | $O(B \cdot M \cdot N)$ |
+| **Parallel Matrix Mul** | $\mathcal{A} \times \mathcal{B}$ | Rank $\ge 2$ ($P$ threads) | $O(\frac{B \cdot M \cdot K \cdot N}{P})^*$ | $O(B \cdot M \cdot N)$ |
+| **Tensor Contraction (`tensordot`)** | $\mathcal{A} \times \mathcal{B}$ | General Ranks | $O(V \cdot K_{\text{contract}})$ | $O(V)$ |
+| **Reshape** | $\mathcal{A} \to \mathcal{A}'$ | Rank $K \to M$ | $O(N)$ | $O(N)$ |
+| **Matrix Transpose** | $\mathbf{A} \to \mathbf{A}^T$ | Rank 2 | $O(M \cdot N)$ | $O(M \cdot N)$ |
 
-*\* Where $P$ represents the number of active OpenMP worker threads.*
+*\* Where $P$ represents the number of active OpenMP worker threads, $B$ is total batch count, and $V$ is total output volume.*
 
 ---
 
@@ -707,3 +740,327 @@ Empirical evaluations validate that MiniTensor achieves up to a **$5.49\times$ s
 [11] OpenMP Architecture Review Board, "OpenMP Application Programming Interface Version 5.0," Nov. 2018.
 [12] K. Goto and R. A. van de Geijn, "Anatomy of high-performance matrix multiplication," ACM Transactions on Mathematical Software, vol. 34, no. 3, pp. 12:1–12:25, 2008.
 ```
+
+---
+
+## 12. Comprehensive User Documentation and Integration Guide
+
+This section serves as the complete, practical user manual and engineering integration guide for developers, researchers, and students integrating MiniTensor into their C++ projects.
+
+### 12.1 Distribution and Download Options
+
+MiniTensor is distributed as a zero-dependency C++20 header library under the MIT License. All official release artifacts are published on GitHub under:
+
+🔗 **GitHub Releases:** [https://github.com/yakshaarora2007-sketch/Tensors4Cpp/releases/tag/v1.1.0](https://github.com/yakshaarora2007-sketch/Tensors4Cpp/releases/tag/v1.1.0)
+
+| Distribution Format | Artifact Name | Size | Recommended Use Case |
+| :--- | :--- | :---: | :--- |
+| **Amalgamated Single-Header** | `minitensor.hpp` | ~30 KB | **Default choice for 90% of projects.** Single drop-in file, zero build scripts required. |
+| **Modular Archive** | `minitensor-v1.1.0.zip` | ~31 KB | Recommended for modular projects, CMake packaging, and fine-grained header dependencies. |
+| **Git Repository** | `Tensors4Cpp.git` | Full Repo | Recommended for running unit tests, executing benchmarks, and library development. |
+
+#### Command-Line Download
+
+##### Linux / macOS (cURL or wget):
+```sh
+curl -LO https://github.com/yakshaarora2007-sketch/Tensors4Cpp/releases/download/v1.1.0/minitensor.hpp
+```
+or
+```sh
+wget https://github.com/yakshaarora2007-sketch/Tensors4Cpp/releases/download/v1.1.0/minitensor.hpp
+```
+
+##### Windows (PowerShell):
+```powershell
+Invoke-WebRequest -Uri "https://github.com/yakshaarora2007-sketch/Tensors4Cpp/releases/download/v1.1.0/minitensor.hpp" -OutFile "minitensor.hpp"
+```
+
+---
+
+### 12.2 Integration and Build Setup
+
+#### Option A: Direct Single-Header Inclusion (Fastest)
+
+Place `minitensor.hpp` directly alongside your source code:
+```text
+my_project/
+├── minitensor.hpp
+└── main.cpp
+```
+In `main.cpp`:
+```cpp
+#include "minitensor.hpp"
+using namespace mt; // or namespace minitensor
+```
+
+#### Option B: Modular Header Inclusion
+
+Extract `minitensor-v1.1.0.zip` so `include/` is in your project search path:
+```text
+my_project/
+├── include/
+│   └── minitensor/
+│       ├── minitensor.hpp
+│       ├── tensor.hpp
+│       ├── indexing.hpp
+│       ├── linalg.hpp
+│       └── operations.hpp
+└── src/
+    └── main.cpp
+```
+In your code:
+```cpp
+#include <minitensor/minitensor.hpp>
+// Or include specific domain headers:
+#include <minitensor/tensor.hpp>
+#include <minitensor/linalg.hpp>
+```
+
+#### Option C: Zero-Download via CMake `FetchContent`
+
+CMake can automatically clone, configure, and link MiniTensor during the build process:
+
+```cmake
+cmake_minimum_required(VERSION 3.16)
+project(MyTensorApp LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+include(FetchContent)
+FetchContent_Declare(
+    MiniTensor
+    GIT_REPOSITORY https://github.com/yakshaarora2007-sketch/Tensors4Cpp.git
+    GIT_TAG        v1.1.0
+)
+FetchContent_MakeAvailable(MiniTensor)
+
+add_executable(my_app main.cpp)
+target_link_libraries(my_app PRIVATE MiniTensor::minitensor)
+```
+
+---
+
+### 12.3 Complete Multi-Rank Code Walkthrough
+
+The following code snippets illustrate the primary capabilities of MiniTensor across all dimensional ranks.
+
+#### Example 1: Instantiation, Filling, and Variadic Indexing
+```cpp
+#include <iostream>
+#include "minitensor.hpp"
+
+int main() {
+    // Construct a 2x3 single-precision matrix initialized to zero
+    mt::Tensor<float> A({2, 3});
+
+    // Populate elements using variadic coordinate syntax
+    A(0, 0) = 1.0f; A(0, 1) = 2.0f; A(0, 2) = 3.0f;
+    A(1, 0) = 4.0f; A(1, 1) = 5.0f; A(1, 2) = 6.0f;
+
+    // Construct with uniform fill value
+    mt::Tensor<double> B({3, 3}, 42.0);
+
+    // Construct directly from std::initializer_list
+    mt::Tensor<int> C({2, 2}, {10, 20, 30, 40});
+
+    std::cout << "A rank: " << A.rank() << ", shape: " << A.shape_str() << "\n";
+    std::cout << "A(1, 2) = " << A(1, 2) << "\n";
+    return 0;
+}
+```
+
+#### Example 2: Rank 1 Vector Dot Product
+```cpp
+#include <iostream>
+#include "minitensor.hpp"
+
+int main() {
+    mt::Tensor<float> u({3}, {1.0f, 2.0f, 3.0f});
+    mt::Tensor<float> v({3}, {4.0f, 5.0f, 6.0f});
+
+    // Rank 1 x Rank 1 yields a Rank 0 scalar tensor
+    mt::Tensor<float> dot = mt::matmul(u, v);
+
+    std::cout << "Scalar result: " << dot() << "\n"; // Output: 32.0f
+    return 0;
+}
+```
+
+#### Example 3: Rank 2 Matrix Multiplication & Cache-Blocked Matmul
+```cpp
+#include <iostream>
+#include "minitensor.hpp"
+
+int main() {
+    // 2x3 matrix
+    mt::Tensor<float> A({2, 3}, {
+        1.0f, 2.0f, 3.0f,
+        4.0f, 5.0f, 6.0f
+    });
+    // 3x2 matrix
+    mt::Tensor<float> B({3, 2}, {
+        7.0f, 8.0f,
+        9.0f, 1.0f,
+        2.0f, 3.0f
+    });
+
+    // Baseline serial matrix multiplication
+    mt::Tensor<float> C = mt::matmul(A, B);
+
+    // Cache-blocked multiplication with block size B=64
+    mt::Tensor<float> C_blocked = mt::matmul_blocked(A, B, 64);
+
+    std::cout << "C shape: " << C.shape_str() << "\n"; // [2, 2]
+    std::cout << "C(0, 0) = " << C(0, 0) << "\n";     // 31.0f
+    return 0;
+}
+```
+
+#### Example 4: Rank 3 Batched Matrix Multiplication
+```cpp
+#include <iostream>
+#include "minitensor.hpp"
+
+int main() {
+    // Batch of two 2x3 matrices (Shape: [2, 2, 3])
+    mt::Tensor<float> batchA({2, 2, 3}, {
+        1, 2, 3,  4, 5, 6,     // Batch slice 0
+        7, 8, 9,  1, 2, 3      // Batch slice 1
+    });
+
+    // Batch of two 3x2 matrices (Shape: [2, 3, 2])
+    mt::Tensor<float> batchB({2, 3, 2}, {
+        9, 8,  7, 6,  5, 4,    // Batch slice 0
+        3, 2,  1, 0, -1, -2    // Batch slice 1
+    });
+
+    // Batched matrix multiplication: evaluates each slice independently
+    mt::Tensor<float> batchC = mt::matmul(batchA, batchB);
+
+    std::cout << "Result shape: " << batchC.shape_str() << "\n"; // [2, 2, 2]
+    return 0;
+}
+```
+
+#### Example 5: Batch Dimension Broadcasting
+```cpp
+#include <iostream>
+#include "minitensor.hpp"
+
+int main() {
+    // Batched input tensor: Shape [4, 10, 32] (Batch size 4, 10 tokens, 32 dims)
+    mt::Tensor<float> X({4, 10, 32}, 1.0f);
+
+    // Single linear layer projection matrix: Shape [32, 64]
+    mt::Tensor<float> W({32, 64}, 0.5f);
+
+    // Batch broadcasting automatically aligns W across all 4 slices
+    mt::Tensor<float> Y = mt::matmul(X, W);
+
+    std::cout << "Output shape: " << Y.shape_str() << "\n"; // [4, 10, 64]
+    return 0;
+}
+```
+
+#### Example 6: Arbitrary-Axis Tensor Contraction (`tensordot`)
+```cpp
+#include <iostream>
+#include "minitensor.hpp"
+
+int main() {
+    // 3D tensor: Shape [2, 3, 4]
+    mt::Tensor<float> A({2, 3, 4}, 1.0f);
+    // 3D tensor: Shape [4, 5, 6]
+    mt::Tensor<float> B({4, 5, 6}, 2.0f);
+
+    // Contract axis 2 of A (dimension 4) with axis 0 of B (dimension 4)
+    mt::Tensor<float> C = mt::tensordot(A, B, {2}, {0});
+
+    // Resulting outer shape: [2, 3, 5, 6]
+    std::cout << "Contracted shape: " << C.shape_str() << "\n";
+    return 0;
+}
+```
+
+#### Example 7: Reshaping and Transposition
+```cpp
+#include <iostream>
+#include "minitensor.hpp"
+
+int main() {
+    mt::Tensor<float> M({2, 3}, {1, 2, 3, 4, 5, 6});
+
+    // Materialized matrix transpose: [2, 3] -> [3, 2]
+    mt::Tensor<float> MT = M.transpose();
+
+    // Materialized reshape: [2, 3] -> [6] or [1, 6]
+    mt::Tensor<float> flat = M.reshape({6});
+
+    std::cout << "MT shape: " << MT.shape_str() << ", flat shape: " << flat.shape_str() << "\n";
+    return 0;
+}
+```
+
+---
+
+### 12.4 Compiler Commands and Flags
+
+MiniTensor requires a standard C++20 compiler. No auxiliary libraries or link flags are needed for serial execution.
+
+#### GCC (Linux, MinGW-w64):
+```sh
+# Serial compilation:
+g++ -std=c++20 -O3 -I. main.cpp -o app
+
+# With OpenMP multithreading acceleration:
+g++ -std=c++20 -O3 -fopenmp -DMINITENSOR_USE_OPENMP -I. main.cpp -o app
+```
+
+#### Clang (macOS, Linux):
+```sh
+# Serial compilation:
+clang++ -std=c++20 -O3 -I. main.cpp -o app
+
+# With OpenMP multithreading acceleration:
+clang++ -std=c++20 -O3 -fopenmp -DMINITENSOR_USE_OPENMP -I. main.cpp -o app
+```
+
+#### Microsoft Visual C++ (MSVC / Visual Studio):
+```cmd
+:: Serial compilation:
+cl /std:c++20 /O2 /EHsc /I. main.cpp /Fe:app.exe
+
+:: With OpenMP multithreading acceleration:
+cl /std:c++20 /O2 /EHsc /openmp /DMINITENSOR_USE_OPENMP /I. main.cpp /Fe:app.exe
+```
+
+---
+
+### 12.5 API Reference and Method Cheat Sheet
+
+| Category | Method / Signature | Description | Complexity |
+| :--- | :--- | :--- | :---: |
+| **Construction** | `Tensor(shape, fill_value=0)` | Allocates owning tensor of given shape filled with value. | $O(N)$ |
+| | `Tensor(shape, values_vector)` | Constructs tensor and moves/copies initial values. | $O(N)$ |
+| | `Tensor(shape, initializer_list)` | Constructs tensor from braced list of values. | $O(N)$ |
+| **Shape Queries** | `rank()` | Returns number of dimensions ($K$). | $O(1)$ |
+| | `shape()` | Returns `const std::vector<size_t>&` of axis extents. | $O(1)$ |
+| | `size()` | Returns total element count ($N = \prod D_k$). | $O(1)$ |
+| | `empty()` | Returns `true` if $N == 0$. | $O(1)$ |
+| | `strides()` | Returns precomputed row-major stride vector. | $O(1)$ |
+| | `shape_str()` | Returns formatted shape string (e.g. `"[2, 3]"`). | $O(K)$ |
+| **Coordinate Access** | `operator()(indices...)` | Variadic coordinate lookup (e.g. `t(i, j)`). | $O(K)$ |
+| | `operator()()` | Scalar lookup for Rank 0 tensors. | $O(1)$ |
+| | `at(indices)` | Bounds-checked coordinate lookup via vector/initializer list. | $O(K)$ |
+| | `set(indices, value)` | Explicit coordinate element assignment. | $O(K)$ |
+| **Transformations** | `reshape(new_shape)` | Returns new tensor with new shape under element conservation. | $O(N)$ |
+| | `transpose()` | Returns materialized transpose matrix ($[M, N] \to [N, M]$). | $O(M \cdot N)$ |
+| **Element-Wise Ops** | `+`, `-`, `*` | Point-wise binary arithmetic between identical shapes. | $O(N)$ |
+| | `==`, `!=` | Value and shape equality comparison. | $O(N)$ |
+| **Linear Algebra** | `matmul(A, B)` | Arbitrary-rank tensor multiplication (Dot, 2D, Batched, Broadcast). | $O(B \cdot M \cdot K \cdot N)$ |
+| | `matmul_blocked(A, B, B_size=64)` | Cache-tiled matrix and batched multiplication. | $O(B \cdot M \cdot K \cdot N)$ |
+| | `matmul_parallel(A, B)` | OpenMP multi-threaded parallel multiplication kernel. | $O(\frac{B \cdot M \cdot K \cdot N}{P})$ |
+| | `tensordot(A, B, axes_a, axes_b)` | General tensor contraction along specified paired axes. | $O(V \cdot K_{\text{contract}})$ |
+| **Memory Access** | `data()` | Direct pointer access to contiguous memory (`T*` / `const T*`). | $O(1)$ |
+| | `raw_data()` | Returns underlying `std::vector<T>&`. | $O(1)$ |
